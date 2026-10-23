@@ -115,8 +115,7 @@ section{padding:110px 0 0}
 .melt .col:first-child .bar{background:linear-gradient(180deg,#9ea1ff,#3b3ff5)}
 .melt .amt{font-weight:800;font-size:20px;letter-spacing:-.02em;margin-bottom:8px}
 .melt .yr{font-size:14px;color:var(--ink-3);margin-top:10px;font-weight:600}
-.minus{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:26px 0 8px}
-.minus .box{border-radius:16px;padding:16px 22px;font-weight:800;font-size:20px;background:#f6f6f9}
+.minus .box{border-radius:16px;padding:16px 14px;font-weight:800;font-size:22px;background:#f6f6f9}
 .minus .box small{display:block;font-size:13px;font-weight:600;color:var(--ink-3)}
 .minus .box.r{background:#fff0f3;color:var(--red)}
 .minus .op{font-size:22px;font-weight:800;color:var(--ink-3)}
@@ -126,6 +125,24 @@ section{padding:110px 0 0}
 .mlegend{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;color:var(--ink-2);margin:14px 0 4px}
 .mlegend i{display:inline-block;width:18px;height:4px;border-radius:2px;margin-right:6px;vertical-align:3px}
 .mlegend i.dash{background:repeating-linear-gradient(90deg,#9aa0ad 0 5px,transparent 5px 9px)}
+
+.news{background:#fff;border-radius:var(--r);box-shadow:var(--shadow);border:1px solid #f1f1f7;padding:28px;margin-top:8px}
+.news-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.news-badge{background:#111318;color:#fff;font-size:13px;font-weight:700;padding:6px 12px;border-radius:999px}
+.news-meta{font-size:13px;color:var(--ink-3);font-weight:600}
+.news-title{font-size:clamp(20px,3.2vw,27px);font-weight:800;letter-spacing:-.03em;line-height:1.4;margin:18px 0 22px;padding-left:14px;border-left:4px solid var(--red)}
+.news-stats{display:grid;grid-template-columns:1.4fr 1fr 1fr;grid-template-rows:auto auto;gap:10px}
+.news-stats>div{background:#f7f7fb;border-radius:16px;padding:16px}
+.news-stats>div.main{grid-row:1/3;background:linear-gradient(135deg,#f0506e,#ff7a8f);color:#fff;display:flex;flex-direction:column;justify-content:center}
+.news-stats .k{font-size:13px;font-weight:600;color:var(--ink-3)}
+.news-stats .main .k,.news-stats .main .s{color:#ffe3e8}
+.news-stats .v{font-size:24px;font-weight:800;letter-spacing:-.02em;color:var(--red)}
+.news-stats .main .v{font-size:48px;color:#fff;line-height:1.15;margin:4px 0}
+.news-stats .s{font-size:13px}
+.news-src{font-size:12px;color:var(--ink-3);margin-top:14px}
+.news-src a{color:var(--ink-3)}
+.minus{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:12px;margin:22px auto 10px}
+.minus .box{text-align:center}
 
 /* Roadmap */
 .road{position:relative;padding:10px 0 0}
@@ -251,7 +268,8 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
   th,td{padding:13px 8px;font-size:14px}
   .author{flex-direction:column;text-align:center}
   br.pc{display:none}
-  .minus{flex-direction:column;gap:4px}.minus .box{width:100%;max-width:300px;text-align:center}.minus .op{line-height:1}
+  .minus{grid-template-columns:1fr;gap:4px;max-width:300px}.minus .op{text-align:center;line-height:1}
+  .news{padding:22px}.news-stats{grid-template-columns:1fr 1fr}.news-stats>div.main{grid-row:auto;grid-column:1/-1}.news-stats .main .v{font-size:40px}
   .vs .big{font-size:24px}
   .vs .card{padding:18px}
 }
@@ -300,24 +318,33 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
       <h2>물가상승률 2% 반영 시,<br>30년이면 가치가 <span style="color:var(--red)">45% 하락</span></h2>
       <p>은행 통장 속 숫자는 그대로인데, 살 수 있는 건 매년 줄어들어요.</p>
     </div>
-    <div class="minus">
-      <div class="box"><small>입출금 통장 금리</small>연 0.1% 안팎</div>
-      <div class="op">−</div>
-      <div class="box"><small>물가상승률 (한국은행 목표)</small>연 2%</div>
-      <div class="op">=</div>
-      <div class="box r"><small>실질 수익률</small>매년 약 −1.9%</div>
+    <div class="news narrow">
+      <div class="news-top"><span class="news-badge">📰 실제 뉴스</span><span class="news-meta">SBS Biz · 2026.10.02</span></div>
+      <h3 class="news-title">9월 물가 2.9%로 두 달 만에 2%대…<br class="pc">석유류 14.8%·가공식품 2.1%↑</h3>
+      <div class="news-stats">
+        <div class="main"><div class="k">9월 소비자물가</div><div class="v">+2.9%</div><div class="s">8월 3.1%에서 소폭 둔화</div></div>
+        <div><div class="k">⛽ 석유류</div><div class="v">+14.8%</div></div>
+        <div><div class="k">🍜 가공식품</div><div class="v">+2.1%</div></div>
+        <div><div class="k">🛒 생활물가</div><div class="v">+2.5%</div></div>
+        <div><div class="k">📦 근원물가</div><div class="v">+2.8%</div></div>
+      </div>
+      <p class="news-src">출처: 국가데이터처 「2026년 9월 소비자물가 동향」 · 전년 동월 대비 · <a href="https://biz.sbs.co.kr/amp/article/20000338001" target="_blank" rel="noopener">SBS Biz 기사 보기</a></p>
     </div>
+    <div class="minus narrow">
+      <div class="box"><small>입출금 통장 금리</small>연 0.1%</div>
+      <div class="op">−</div>
+      <div class="box"><small>9월 실제 물가상승률</small>2.9%</div>
+      <div class="op">=</div>
+      <div class="box r"><small>내 돈의 실질 수익률</small>약 −2.8%</div>
+    </div>
+    <p class="narrow" style="text-align:center;color:var(--ink-2);font-size:16px;margin-top:4px">‘2%대로 내려왔다’는 물가도, 통장 이자의 <b style="color:var(--red)">29배</b>예요.</p>
     <div class="card narrow" style="margin-top:28px">
       <h3 style="font-size:20px;font-weight:800">지금 1,000만원, 은행에 두면 실제 가치는? 🫠</h3>
       <div class="mlegend"><span><i class="dash"></i>통장에 찍힌 숫자</span><span><i style="background:var(--red)"></i>실제 구매력 (물가 2% 반영)</span></div>
       <svg id="meltChart" viewBox="0 0 640 330" width="100%" role="img" aria-label="1,000만원을 은행에 30년 두었을 때 통장 금액과 실제 구매력 변화 선그래프"></svg>
       <p style="font-size:14px;color:var(--ink-3);margin-top:12px">통장 숫자는 30년 뒤 약 1,030만원으로 거의 그대로지만, 실제로 살 수 있는 건 <b style="color:var(--red)">552만원어치</b>. 거의 반토막이에요.</p>
     </div>
-    <div class="grid2 narrow" style="margin-top:20px">
-      <div class="card icard"><div class="e">🏦</div><h3>30년간 매달 20만원 저축</h3><div class="big">약 7,309만원</div><p>연 0.1% 통장에 모은 금액</p></div>
-      <div class="card icard"><div class="e">🛒</div><h3>지금 돈 가치로 바꾸면</h3><div class="big" style="color:var(--red)">약 4,035만원</div><p>물가 연 2% 반영 시 실제 구매력</p></div>
-    </div>
-    <div class="facts red narrow">
+    <div class="facts red narrow" style="margin-top:20px">
       <div class="facts-head">📊 실제 물가는 이렇게 올랐어요</div>
       <div class="facts-grid">
         <div><div class="fv">5.1%</div><div class="fk">2022년<br>소비자물가 상승률</div><div class="fs">통계청 CPI</div></div>
