@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>20만원으로 월 100만원 평생 받는 법</title>
+<meta name="description" content="30세부터 월 20만원, 연금저축펀드 + S&P500으로 60세에 약 5억, 매달 100만원을 평생 받는 구조를 숫자 하나하나 풀어드립니다.">
+<meta property="og:title" content="20만원으로 월 100만원 평생 받는 법">
+<meta property="og:description" content="계산 근거까지 전부 풀어드립니다.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{
+  --blue:#3b3ff5; --blue-2:#5b5ff7; --blue-soft:#eeeffe; --lav:#dcdcfb; --lav-2:#ecebfd;
+  --ink:#111318; --ink-2:#4b4f5c; --ink-3:#8c909c; --line:#ececf3; --paper:#fff; --bg:#ffffff;
+  --green:#12b886; --red:#f0506e; --yellow:#fff4d6;
+  --shadow:0 10px 30px -12px rgba(59,63,245,.18), 0 2px 6px rgba(17,19,24,.04);
+  --r:24px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:"Pretendard","Pretendard Variable",-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;line-height:1.65;word-break:keep-all;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.narrow{max-width:760px;margin:0 auto}
+b,strong{font-weight:700}
+.blue{color:var(--blue)}
+
+/* NAV */
+.nav-shell{position:sticky;top:14px;z-index:20;padding:0 16px}
+.nav{max-width:1120px;margin:14px auto 0;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-radius:18px;box-shadow:0 6px 24px -10px rgba(59,63,245,.25);display:flex;align-items:center;justify-content:space-between;padding:12px 14px 12px 22px;gap:12px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:-.02em;text-decoration:none}
+.logo i{width:30px;height:30px;border-radius:50%;background:var(--blue-soft);color:#fff;display:grid;place-items:center;font-style:normal;font-size:14px;font-weight:800}
+.menu{display:flex;gap:28px;font-size:15px;font-weight:600}
+.menu a{text-decoration:none;color:var(--ink)}
+.menu a:hover{color:var(--blue)}
+.nav-btns{display:flex;gap:8px}
+.b-out,.b-blue{display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap;transition:transform .15s,background .15s}
+.b-out{border:1px solid #dcdde6;background:#fff}
+.b-out:hover{border-color:var(--blue);color:var(--blue)}
+.b-blue{background:var(--blue);color:#fff}
+.b-blue:hover{background:#2f33e0;transform:translateY(-1px)}
+
+/* HERO */
+.hero{text-align:center;padding:88px 0 40px}
+.pill{display:inline-flex;align-items:center;gap:8px;background:var(--blue-soft);color:var(--blue);font-weight:700;font-size:14px;padding:8px 16px;border-radius:999px}
+.hero h1{font-size:clamp(38px,7.6vw,76px);font-weight:800;line-height:1.18;letter-spacing:-.04em;margin:24px 0 22px}
+.hero p{font-size:clamp(16px,2.6vw,20px);color:var(--ink-2);max-width:640px;margin:0 auto}
+.hero .cta-row{display:flex;gap:10px;justify-content:center;margin-top:34px;flex-wrap:wrap}
+.hero .cta-row a{padding:16px 26px;font-size:17px;border-radius:12px}
+
+/* CARD BAND (marquee) */
+.band{background:linear-gradient(180deg,#fff 0%,var(--lav) 22%,var(--lav) 78%,#fff 100%);padding:56px 0;overflow:hidden}
+.row{display:flex;gap:28px;width:max-content;animation:slide 48s linear infinite}
+.row.r2{animation-direction:reverse;animation-duration:56s;margin-top:28px}
+.band:hover .row{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.row{animation:none}}
+.tile{width:300px;height:200px;flex:0 0 auto;background:#fff;border-radius:var(--r);padding:24px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:var(--shadow)}
+.tile .e{font-size:34px;line-height:1}
+.tile h3{font-size:22px;font-weight:800;letter-spacing:-.02em}
+.tile p{font-size:15px;color:var(--ink-2);margin-top:4px}
+
+/* SECTION HEAD */
+section{padding:110px 0 0}
+.sec-head{text-align:center;margin-bottom:44px}
+.sec-head .tag{display:inline-block;color:var(--blue);font-weight:700;font-size:15px;margin-bottom:12px}
+.sec-head h2{font-size:clamp(30px,5.6vw,54px);font-weight:800;line-height:1.25;letter-spacing:-.04em}
+.sec-head p{color:var(--ink-2);font-size:clamp(16px,2.4vw,19px);margin-top:16px}
+.body p{font-size:18px;color:var(--ink-2);margin-bottom:16px}
+.hl{background:linear-gradient(transparent 62%,#d9dafd 62%);color:var(--ink);font-weight:700}
+
+.card{background:#fff;border-radius:var(--r);padding:28px;box-shadow:var(--shadow);border:1px solid #f1f1f7}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.icard .e{font-size:32px;line-height:1;margin-bottom:28px}
+.icard h3{font-size:22px;font-weight:800;letter-spacing:-.02em}
+.icard p{font-size:15px;color:var(--ink-2);margin-top:6px}
+.icard .big{font-size:clamp(30px,4.4vw,42px);font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-top:4px}
+
+/* Author */
+.author{display:flex;gap:20px;align-items:center;max-width:760px;margin:0 auto}
+.avatar{flex:0 0 64px;width:64px;height:64px;border-radius:50%;background:var(--blue-soft);display:grid;place-items:center;font-size:30px}
+.author .name{font-weight:800;font-size:19px}
+.author .role{font-size:14px;color:var(--blue);font-weight:600}
+.author p{margin-top:6px;color:var(--ink-2);font-size:16px}
+
+/* VS */
+.vs .bad{background:#f6f6f9;box-shadow:none}
+.vs .good{background:var(--blue);color:#fff;border:0}
+.vs .good p{color:#d6d7ff}
+.vs .good .big{color:#fff}
+
+.note{background:var(--blue-soft);border-radius:18px;padding:22px 24px;font-size:16px;color:#2d2f8a;margin:24px 0}
+
+
+/* Facts */
+.facts{margin-top:28px;background:#f7f7fb;border-radius:var(--r);padding:26px}
+.facts-head{font-weight:800;font-size:17px;margin-bottom:16px}
+.facts-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.facts-grid>div{background:#fff;border-radius:16px;padding:18px 14px;box-shadow:0 2px 8px rgba(17,19,24,.04)}
+.fv{font-size:28px;font-weight:800;color:var(--blue);letter-spacing:-.03em;line-height:1.2}
+.fv.neg{color:var(--ink)}
+.fk{font-size:13px;color:var(--ink-2);margin-top:6px;line-height:1.5}
+.fs{font-size:11px;color:var(--ink-3);margin-top:8px}
+.facts-note{font-size:13px;color:var(--ink-2);margin-top:16px}
+.facts-src{font-size:12px;color:var(--ink-3);margin-top:6px}
+.facts-src a{color:var(--ink-3)}
+@media (max-width:900px){.facts-grid{grid-template-columns:1fr 1fr}}
+
+/* Problem */
+.melt{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:end;height:260px;margin:8px 0 6px}
+.melt .col{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%}
+.melt .bar{width:100%;max-width:120px;border-radius:16px 16px 6px 6px;background:linear-gradient(180deg,#ff8aa0,#f0506e);position:relative}
+.melt .col:first-child .bar{background:linear-gradient(180deg,#9ea1ff,#3b3ff5)}
+.melt .amt{font-weight:800;font-size:20px;letter-spacing:-.02em;margin-bottom:8px}
+.melt .yr{font-size:14px;color:var(--ink-3);margin-top:10px;font-weight:600}
+.minus{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:26px 0 8px}
+.minus .box{border-radius:16px;padding:16px 22px;font-weight:800;font-size:20px;background:#f6f6f9}
+.minus .box small{display:block;font-size:13px;font-weight:600;color:var(--ink-3)}
+.minus .box.r{background:#fff0f3;color:var(--red)}
+.minus .op{font-size:22px;font-weight:800;color:var(--ink-3)}
+.facts.red .fv{color:var(--red)}
+.conclude{text-align:center;font-size:clamp(20px,3.6vw,28px);font-weight:800;letter-spacing:-.03em;margin-top:40px;line-height:1.45}
+
+/* Roadmap */
+.road{position:relative;padding:10px 0 0}
+.road-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;align-items:end;height:360px;position:relative}
+.road .col{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;position:relative}
+.road .val{font-weight:800;font-size:17px;letter-spacing:-.02em;text-align:center;line-height:1.25;margin-bottom:8px}
+.road .val small{display:block;font-size:11px;color:var(--ink-3);font-weight:600}
+.road .stack{height:var(--p);width:100%;max-width:92px;display:flex;flex-direction:column;justify-content:flex-end;border-radius:14px 14px 6px 6px;overflow:hidden;background:var(--blue)}
+.road .stack .gain{background:linear-gradient(180deg,#7b7fff,#3b3ff5)}
+.road .stack .prin{background:#cfd0f5}
+.road .age{margin-top:12px;font-weight:800;font-size:15px}
+.road .flag{position:absolute;top:var(--t,auto);bottom:var(--b,auto);left:50%;transform:translateX(-50%);white-space:nowrap;background:#111318;color:#fff;font-size:12px;font-weight:700;padding:5px 10px;border-radius:999px}
+.road .col.goal .val{color:var(--blue);font-size:22px}
+.road-legend{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;font-size:14px;color:var(--ink-2);margin-top:22px}
+.road-legend i{display:inline-block;width:12px;height:12px;border-radius:4px;margin-right:6px;vertical-align:-1px}
+.road-steps{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:26px}
+.road-steps span{background:var(--blue-soft);color:var(--blue);font-weight:700;font-size:14px;padding:8px 14px;border-radius:999px}
+@media (max-width:700px){
+  .road-grid{grid-template-columns:1fr;height:auto;gap:10px}
+  .road .col{flex-direction:row;height:auto;justify-content:flex-start;gap:10px;flex-wrap:wrap;align-items:center}
+  .road .age{order:-1;margin:0;width:44px;flex:0 0 44px}
+  .road .stack{flex-direction:row-reverse;height:26px;width:calc(var(--p) * .45 + 4px);max-width:none;border-radius:6px 12px 12px 6px;flex:0 0 auto}
+  .road .val{order:2;margin:0;text-align:left}
+  .road .flag{position:static;transform:none;order:3}
+  .melt{height:220px;gap:8px}.melt .amt{font-size:16px}
+}
+
+/* Flow */
+.flow .card{position:relative}
+.flow .num{font-size:14px;font-weight:800;color:var(--blue);background:var(--blue-soft);display:inline-block;padding:4px 10px;border-radius:999px;margin-bottom:22px}
+.result{background:linear-gradient(135deg,#3b3ff5 0%,#6a5cff 100%);color:#fff;border-radius:28px;padding:48px 28px;text-align:center;margin:24px 0}
+.result .k{color:#d6d7ff;font-size:16px;font-weight:600}
+.result .v{font-size:clamp(42px,9vw,80px);font-weight:800;letter-spacing:-.04em;line-height:1.15;margin:8px 0}
+.result .s{font-size:17px;color:#e6e6ff}
+
+.chart-legend{display:flex;gap:18px;font-size:14px;color:var(--ink-2);margin-bottom:12px;flex-wrap:wrap}
+.chart-legend i{display:inline-block;width:12px;height:12px;border-radius:4px;margin-right:6px;vertical-align:-1px}
+svg text{font-family:inherit}
+
+/* Equation */
+.equation{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:28px 0;text-align:center}
+.equation .box{background:#fff;border-radius:16px;padding:16px 20px;font-weight:700;font-size:18px;box-shadow:var(--shadow)}
+.equation .box.em{background:var(--blue);color:#fff}
+.equation .op{font-size:22px;font-weight:800;color:var(--ink-3)}
+
+.gauge .bar{height:16px;background:#f0f0f6;border-radius:99px;position:relative;overflow:hidden;margin-top:18px}
+.gauge .fill{position:absolute;inset:0 auto 0 0;width:57.5%;background:var(--blue);border-radius:99px}
+.gauge .labels{display:flex;justify-content:space-between;font-size:14px;color:var(--ink-3);margin-top:10px}
+.gauge .labels b{color:var(--blue)}
+
+/* Tables */
+table{width:100%;border-collapse:collapse;font-size:16px}
+th,td{padding:16px 14px;border-bottom:1px solid var(--line);text-align:left}
+th{font-size:14px;color:var(--ink-3);font-weight:600}
+td:last-child,th:last-child{text-align:right}
+tr:last-child td{border-bottom:0}
+tr.em td{background:var(--blue-soft);font-weight:700}
+tr.em td:last-child{color:var(--blue);font-size:18px}
+.age-table td:nth-child(4){font-weight:800;font-size:18px}
+.age-table tr.best td:nth-child(4){color:var(--blue)}
+.age-table tr.worst td:nth-child(4){color:var(--red)}
+.table-scroll{overflow-x:auto;padding:8px 18px}
+
+/* Calculator */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.calc label{display:flex;justify-content:space-between;font-size:15px;font-weight:600;margin-bottom:8px}
+.calc label output{color:var(--blue);font-weight:800}
+.calc input[type=range]{width:100%;accent-color:var(--blue);margin-bottom:22px}
+.calc .seg{display:flex;background:#f3f3f8;border-radius:12px;padding:4px;gap:4px}
+.calc .seg button{flex:1;border:0;background:transparent;padding:10px;border-radius:9px;font:inherit;font-weight:700;color:var(--ink-2);cursor:pointer}
+.calc .seg button.on{background:#fff;color:var(--blue);box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.outs{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-content:start}
+.outs>div{background:#f7f7fb;border-radius:18px;padding:18px}
+.outs>div.main{grid-column:1/-1;background:var(--blue);color:#fff}
+.outs .k{font-size:13px;color:var(--ink-3);font-weight:600}
+.outs .main .k{color:#d6d7ff}
+.outs .v{font-size:24px;font-weight:800;letter-spacing:-.02em}
+.outs .main .v{font-size:40px}
+.fine{font-size:13px;color:var(--ink-3);margin-top:16px}
+
+/* Warn accordion */
+.warn{display:grid;gap:14px}
+.warn details{background:#fff;border-radius:20px;box-shadow:var(--shadow);border:1px solid #f1f1f7;padding:0 24px}
+.warn summary{list-style:none;cursor:pointer;padding:22px 34px 22px 0;font-weight:700;font-size:17px;position:relative;display:flex;gap:12px;align-items:flex-start}
+.warn summary::-webkit-details-marker{display:none}
+.warn summary .e{font-size:22px;line-height:1.2}
+.warn summary:after{content:"";position:absolute;right:4px;top:28px;width:9px;height:9px;border-right:2px solid var(--ink-3);border-bottom:2px solid var(--ink-3);transform:rotate(45deg);transition:transform .2s}
+.warn details[open] summary:after{transform:rotate(-135deg);top:32px}
+.warn details p{font-size:16px;color:var(--ink-2);padding:0 0 22px 34px}
+
+/* Steps */
+.step .n{font-size:14px;font-weight:800;color:#fff;background:var(--blue);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;margin-bottom:26px}
+
+/* CTA */
+.cta{margin:120px 0 0;background:linear-gradient(180deg,#fff 0%,var(--lav-2) 100%);padding:100px 20px;text-align:center}
+.cta h2{font-size:clamp(30px,5.6vw,54px);font-weight:800;line-height:1.25;letter-spacing:-.04em}
+.cta p{color:var(--ink-2);font-size:18px;margin:18px auto 34px;max-width:560px}
+.cta .b-blue{font-size:18px;padding:18px 34px;border-radius:14px}
+
+footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8;max-width:900px;margin:0 auto}
+.sticky{position:fixed;left:0;right:0;bottom:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom));z-index:30;transform:translateY(120%);transition:transform .3s;display:none}
+.sticky a{display:block;max-width:520px;margin:0 auto;text-align:center;background:var(--blue);color:#fff;text-decoration:none;font-weight:700;padding:16px;border-radius:14px;box-shadow:0 12px 28px -10px rgba(59,63,245,.6)}
+.sticky.show{transform:none}
+
+@media (max-width:900px){
+  .menu{display:none}
+  .grid4{grid-template-columns:1fr 1fr}
+  .grid3{grid-template-columns:1fr}
+  .calc{grid-template-columns:1fr}
+  .sticky{display:block}
+}
+@media (max-width:560px){
+  .nav{padding:10px 10px 10px 16px}.logo{font-size:16px}
+  .nav .b-out{display:none}.nav .b-blue{padding:10px 14px;font-size:14px}
+  .hero{padding:64px 0 28px}
+  .tile{width:240px;height:170px;padding:20px}.tile h3{font-size:19px}
+  .row{gap:16px}.row.r2{margin-top:16px}
+  section{padding:80px 0 0}
+  .grid2{grid-template-columns:1fr}
+  .grid4{grid-template-columns:1fr}
+  .card{padding:22px}
+  .vs{grid-template-columns:1fr 1fr}
+  th,td{padding:13px 8px;font-size:14px}
+  .author{flex-direction:column;text-align:center}
+  br.pc{display:none}
+  .vs .big{font-size:24px}
+  .vs .card{padding:18px}
+}
+</style>
+</head>
+<body>
+
+<div class="nav-shell">
+  <nav class="nav">
+    <a class="logo" href="#top"><i>🌱</i>평생 연금 플랜</a>
+    <div class="menu">
+      <a href="#problem">은행의 함정</a>
+      <a href="#why">왜 S&amp;P500</a>
+      <a href="#how">복리 구조</a>
+      <a href="#tax">세액공제</a>
+      <a href="#calc">계산기</a>
+      <a href="#start">시작하기</a>
+    </div>
+    <div class="nav-btns">
+      <a class="b-out" href="#calc">계산해보기</a>
+      <a class="b-blue" href="#" data-cta>무료 자문</a>
+    </div>
+  </nav>
+</div>
+
+<header class="hero wrap" id="top">
+  <span class="pill">💪 커피값으로 만드는 평생 월급</span>
+  <h1>매달 <span class="blue">20만원</span>이<br>평생 <span class="blue">월 100만원</span>이<br>됩니다</h1>
+  <p>30세부터 연금저축펀드 + S&amp;P500.<br class="pc"> 이 조합 하나로 60세에 약 5억, 평생 꺼내 쓰는 돈이 생겨요.</p>
+  <div class="cta-row">
+    <a class="b-out" href="#calc">내 나이로 계산해보기</a>
+    <a class="b-blue" href="#" data-cta>무료 자문 신청</a>
+  </div>
+</header>
+
+<div class="band" aria-label="핵심 요약">
+  <div class="row" id="row1"></div>
+  <div class="row r2" id="row2"></div>
+</div>
+
+<!-- 0 -->
+<section id="problem">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">00 · PROBLEM</span>
+      <h2>은행에 넣어두면,<br>돈이 조용히 녹아요</h2>
+      <p>숫자는 그대로인데, 살 수 있는 건 매년 줄어들어요.</p>
+    </div>
+    <div class="minus">
+      <div class="box"><small>입출금 통장 금리</small>연 0.1% 안팎</div>
+      <div class="op">−</div>
+      <div class="box"><small>물가상승률 (한국은행 목표)</small>연 2%</div>
+      <div class="op">=</div>
+      <div class="box r"><small>실질 수익률</small>매년 약 −1.9%</div>
+    </div>
+    <div class="card narrow" style="margin-top:28px">
+      <h3 style="font-size:20px;font-weight:800">지금 1,000만원, 은행에 두면 실제 가치는? 🫠</h3>
+      <div class="melt">
+        <div class="col"><div class="amt">1,000만원</div><div class="bar" style="height:100%"></div><div class="yr">지금</div></div>
+        <div class="col"><div class="amt">820만원</div><div class="bar" style="height:82%"></div><div class="yr">10년 뒤</div></div>
+        <div class="col"><div class="amt">673만원</div><div class="bar" style="height:67.3%"></div><div class="yr">20년 뒤</div></div>
+        <div class="col"><div class="amt">552만원</div><div class="bar" style="height:55.2%"></div><div class="yr">30년 뒤</div></div>
+      </div>
+      <p style="font-size:14px;color:var(--ink-3);margin-top:12px">물가 연 2% 가정 시 현재 가치로 환산한 구매력이에요. 30년이면 거의 <b style="color:var(--red)">반토막</b>이에요.</p>
+    </div>
+    <div class="grid2 narrow" style="margin-top:20px">
+      <div class="card icard"><div class="e">🏦</div><h3>30년간 매달 20만원 저축</h3><div class="big">약 7,309만원</div><p>연 0.1% 통장에 모은 금액</p></div>
+      <div class="card icard"><div class="e">🛒</div><h3>지금 돈 가치로 바꾸면</h3><div class="big" style="color:var(--red)">약 4,035만원</div><p>물가 연 2% 반영 시 실제 구매력</p></div>
+    </div>
+    <div class="facts red narrow">
+      <div class="facts-head">📊 실제 물가는 이렇게 올랐어요</div>
+      <div class="facts-grid">
+        <div><div class="fv">5.1%</div><div class="fk">2022년<br>소비자물가 상승률</div><div class="fs">통계청 CPI</div></div>
+        <div><div class="fv">2.3%</div><div class="fk">2024년<br>소비자물가 상승률</div><div class="fs">통계청 CPI</div></div>
+        <div><div class="fv">2.1%</div><div class="fk">2025년<br>소비자물가 상승률</div><div class="fs">통계청 CPI</div></div>
+        <div><div class="fv neg">2%</div><div class="fk">한국은행<br>물가안정목표</div><div class="fs">한국은행</div></div>
+      </div>
+      <p class="facts-src">출처: 통계청 소비자물가지수 연평균 상승률 (<a href="https://etfshopping.com/economy/kr-inflation" target="_blank" rel="noopener">정리 자료</a>) · 한국은행 물가안정목표제. 통장 금리·물가는 시기와 은행에 따라 달라요. 위 금액은 단순 계산이에요.</p>
+    </div>
+    <p class="conclude">은행은 돈을 ‘지켜’ 주지 않아요.<br>물가보다 <span class="blue">빨리 크는 곳</span>에 둬야 합니다.</p>
+  </div>
+</section>
+
+<!-- 1 -->
+<section id="why">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">01 · WHY</span>
+      <h2>같은 20만원,<br>어디에 두느냐가 전부예요</h2>
+      <p>커피 몇 잔, 배달 한두 번. 누구나 만들 수 있는 돈이에요.</p>
+    </div>
+    <div class="grid2 vs narrow">
+      <div class="card icard bad"><div class="e">🏦</div><h3>입출금 통장</h3><div class="big">연 0.1% 안팎</div><p>물가를 못 이겨요 😨</p></div>
+      <div class="card icard good"><div class="e">🇺🇸</div><h3>S&amp;P500</h3><div class="big">연평균 약 10%</div><p>수십 년간의 장기 평균</p></div>
+    </div>
+    <div class="facts narrow">
+      <div class="facts-head">📊 객관적 데이터로 확인하기</div>
+      <div class="facts-grid">
+        <div><div class="fv">약 10%</div><div class="fk">1957년 출범 이후<br>S&amp;P500 연평균 수익률</div><div class="fs">Fidelity</div></div>
+        <div><div class="fv">11.5%</div><div class="fk">최근 40년 연평균<br>총수익률(배당 재투자)</div><div class="fs">Fidelity · 2025.12 기준</div></div>
+        <div><div class="fv">9.92%</div><div class="fk">1928~2025년<br>연평균 수익률</div><div class="fs">The Motley Fool</div></div>
+        <div><div class="fv neg">6.64%</div><div class="fk">같은 기간 물가 반영<br>실질 연평균 수익률</div><div class="fs">The Motley Fool</div></div>
+      </div>
+      <p class="facts-note">※ 실질 수익률은 물가상승분을 뺀 값이에요. 2008년 금융위기처럼 한 해에 30% 이상 하락한 해도 있었어요. 과거 수익률이 미래 수익을 보장하지 않아요.</p>
+      <p class="facts-src">출처: <a href="https://www.fidelity.com/learning-center/trading-investing/sp-500-average-return" target="_blank" rel="noopener">Fidelity, “S&amp;P 500 average return”</a> · <a href="https://www.fool.com/research/sp-500-annual-returns/" target="_blank" rel="noopener">The Motley Fool, “S&amp;P 500 Annual Returns”</a></p>
+    </div>
+    <div class="narrow body" style="margin-top:36px">
+      <p><b>S&amp;P500</b> = 애플·구글·테슬라 등 미국 대표 기업 500개. 오르내림은 있었지만, 길게 보면 <span class="hl">연 10% 통장에 넣어둔 효과</span>였어요.</p>
+      <div class="note">💡 <b>전제</b> — 과거 평균을 근거로 한 가정이에요. 미래 수익을 보장하지는 않아요.</div>
+      <p>그리고 핵심은 <b>‘연금저축펀드’ 계좌</b>에서 사는 것. 이유는 03에서 알려드릴게요.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">02 · HOW</span>
+      <h2>매달 20만원,<br>30년 로드맵</h2>
+      <p>돈이 돈을 벌고, 그 돈이 또 돈을 법니다. 한눈에 보세요.</p>
+    </div>
+    <div class="card road">
+      <div class="road-steps"><span>📅 매달 20만원</span><span>📈 연 10% 복리</span><span>🎁 환급금 매년 39.6만원 재투자</span></div>
+      <div class="road-grid">
+        <div class="col"><div class="val">0원<small>원금 0</small></div><div class="stack" style="--p:1%"></div><div class="age">30세</div><span class="flag" style="--b:64px">🚀 시작</span></div>
+        <div class="col"><div class="val">1,793만<small>원금 1,398만</small></div><div class="stack" style="--p:3.4%"><div class="gain" style="flex:395"></div><div class="prin" style="flex:1398"></div></div><div class="age">35세</div></div>
+        <div class="col"><div class="val">4,742만<small>원금 2,796만</small></div><div class="stack" style="--p:9.1%"><div class="gain" style="flex:1946"></div><div class="prin" style="flex:2796"></div></div><div class="age">40세</div></div>
+        <div class="col"><div class="val">9,596만<small>원금 4,194만</small></div><div class="stack" style="--p:18.3%"><div class="gain" style="flex:5402"></div><div class="prin" style="flex:4194"></div></div><div class="age">45세</div><span class="flag" style="--b:calc(18.3% + 96px)">💯 1억 눈앞</span></div>
+        <div class="col"><div class="val">1.76억<small>원금 5,592만</small></div><div class="stack" style="--p:33.6%"><div class="gain" style="flex:11989"></div><div class="prin" style="flex:5592"></div></div><div class="age">50세</div></div>
+        <div class="col"><div class="val">3.07억<small>원금 6,990만</small></div><div class="stack" style="--p:58.7%"><div class="gain" style="flex:23728"></div><div class="prin" style="flex:6990"></div></div><div class="age">55세</div></div>
+        <div class="col goal"><div class="val">약 5.2억<small>원금 8,388만</small></div><div class="stack" style="--p:78%"><div class="gain" style="flex:43946"></div><div class="prin" style="flex:8388"></div></div><div class="age">60세</div><span class="flag" style="background:var(--blue);--b:calc(78% + 104px)">🎉 월 100만원 시작</span></div>
+      </div>
+      <div class="road-legend"><span><i style="background:#cfd0f5"></i>내가 넣은 원금(환급 포함)</span><span><i style="background:var(--blue)"></i>복리로 불어난 수익</span></div>
+      <p style="font-size:13px;color:var(--ink-3);margin-top:12px;text-align:center">마지막 15년에 전체 자산의 80% 이상이 만들어져요. 월복리 단순 계산이라 본문 수치(5억 1,723만원)와 소폭 차이가 있어요.</p>
+    </div>
+    <div class="result">
+      <div class="k">60세 예상 평가금액 (연 10% 가정)</div>
+      <div class="v">약 5억 1,723만원</div>
+      <div class="s">넣은 돈의 <b>약 6.2배</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 -->
+<section id="tax">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">03 · TAX</span>
+      <h2>나라가 매년<br>39.6만원을 얹어줘요</h2>
+      <p>연금저축펀드에 넣은 돈(연 600만원까지)의 일부를 세금에서 돌려받아요.</p>
+    </div>
+    <div class="grid2 narrow">
+      <div class="card icard"><div class="e">💙</div><h3>총급여 5,500만원 이하</h3><div class="big blue">16.5%</div></div>
+      <div class="card icard"><div class="e">💜</div><h3>총급여 5,500만원 초과</h3><div class="big blue">13.2%</div></div>
+    </div>
+    <div class="equation">
+      <div class="box">연 240만원 납입</div>
+      <div class="op">→</div>
+      <div class="box em">매년 약 39.6만원 환급</div>
+    </div>
+    <div class="narrow body" style="text-align:center">
+      <p>이 돈까지 다시 넣으면? <span class="hl">공짜로 생긴 돈이 30년간 또 복리로 불어나요.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- 4 -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">04 · FOREVER</span>
+      <h2>꺼내 써도<br>줄지 않는 돈</h2>
+      <p>5억을 한 번에 쓰는 게 아니라, 매달 100만원씩만 꺼내요.</p>
+    </div>
+    <div class="equation">
+      <div class="box">연 1,200만원</div>
+      <div class="op">÷</div>
+      <div class="box">약 5억 1,723만원</div>
+      <div class="op">=</div>
+      <div class="box em">연 2.3%</div>
+    </div>
+    <div class="card narrow">
+      <h3 style="font-size:22px;font-weight:800">‘4% 룰’의 절반만 씁니다 🔑</h3>
+      <div class="gauge">
+        <div class="bar"><div class="fill"></div></div>
+        <div class="labels"><span>0%</span><span><b>내 인출률 2.3%</b></span><span>4% 룰</span></div>
+      </div>
+      <p style="font-size:16px;color:var(--ink-2);margin-top:18px">연 4%까지 꺼내 써도 원금이 거의 줄지 않는다는 게 은퇴 설계의 기준이에요. 2.3%면 오히려 남은 돈이 더 불어날 수 있어요. <b style="color:var(--ink)">그래서 ‘평생’입니다.</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">05 · DATA</span>
+      <h2>한눈에 보는 계산표</h2>
+    </div>
+    <div class="card narrow table-scroll">
+      <table>
+        <thead><tr><th>항목</th><th>금액</th></tr></thead>
+        <tbody>
+          <tr><td>월 납입액</td><td>20만원</td></tr>
+          <tr><td>투자 기간</td><td>30년 (30→60세)</td></tr>
+          <tr><td>본인 납입 원금</td><td>7,200만원</td></tr>
+          <tr><td>환급 재투자 원금</td><td>1,188만원</td></tr>
+          <tr><td>총 투입 원금</td><td>8,388만원</td></tr>
+          <tr class="em"><td>60세 평가금액</td><td>약 5억 1,723만원</td></tr>
+          <tr><td>원금 대비</td><td>약 6.2배</td></tr>
+          <tr class="em"><td>월 100만원 인출률</td><td>연 약 2.3%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Calculator -->
+<section id="calc">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">SIMULATOR</span>
+      <h2>내 나이로<br>바로 계산해보세요</h2>
+    </div>
+    <div class="calc">
+      <div class="card">
+        <label>시작 나이 <output id="o-age">30세</output></label>
+        <input id="age" type="range" min="20" max="55" step="1" value="30">
+        <label>월 납입액 <output id="o-pay">20만원</output></label>
+        <input id="pay" type="range" min="5" max="150" step="5" value="20">
+        <label>연평균 수익률 가정 <output id="o-rate">10%</output></label>
+        <input id="rate" type="range" min="3" max="12" step="0.5" value="10">
+        <label>세액공제율</label>
+        <div class="seg" id="cr"><button type="button" class="on" data-v="0.165">16.5%</button><button type="button" data-v="0.132">13.2%</button></div>
+      </div>
+      <div class="card">
+        <div class="outs">
+          <div class="main"><div class="k">60세 예상 평가액</div><div class="v" id="r-fv">-</div></div>
+          <div><div class="k">총 투입 원금</div><div class="v" id="r-prin">-</div></div>
+          <div><div class="k">월 100만원 인출률</div><div class="v" id="r-wr">-</div></div>
+          <div style="grid-column:1/-1"><div class="k">4% 룰 기준 월 인출 가능액</div><div class="v blue" id="r-4">-</div></div>
+        </div>
+        <p class="fine">※ 월복리·환급금 매년 재투자(연 600만원 한도) 가정. 세금·수수료·물가 미반영 단순 계산으로, 본문 수치와 소폭 다를 수 있어요.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">06 · CHECK</span>
+      <h2>시작 전,<br>꼭 알아둘 5가지</h2>
+    </div>
+    <div class="warn narrow">
+      <details open><summary><span class="e">📉</span>10%는 평균일 뿐, 보장이 아니에요</summary><p>-30% 빠지는 해도, +30% 오르는 해도 있어요. 30년 평균이 그랬다는 뜻이니 시장 공부는 필수예요.</p></details>
+      <details><summary><span class="e">🔒</span>중간에 빼면 손해예요</summary><p>세액공제 받은 돈을 중도 인출하면 세금을 더 낼 수 있어요. 오래 묶어둘 수 있는 돈으로 시작하세요.</p></details>
+      <details><summary><span class="e">🧾</span>공제율은 소득에 따라 달라요</summary><p>총급여 약 5,500만원을 넘으면 13.2%가 적용돼요.</p></details>
+      <details><summary><span class="e">🛒</span>물가는 반영되지 않았어요</summary><p>30년 뒤 체감 가치는 더 낮아요. 월급이 오르면 납입액도 함께 늘려가세요.</p></details>
+      <details><summary><span class="e">🧩</span>연금저축 하나로는 부족해요</summary><p>이해를 돕기 위한 단순 계산이에요. 여러 연금을 조합해야 나중에 후회가 없어요.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section id="start">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">07 · START</span>
+      <h2>오늘 10분이면<br>시작할 수 있어요</h2>
+    </div>
+    <div class="grid4">
+      <div class="card icard step"><div class="n">1</div><h3>계좌 개설</h3><p>증권사 앱에서 연금저축펀드 비대면 개설</p></div>
+      <div class="card icard step"><div class="n">2</div><h3>자동이체</h3><p>매달 20만원, 의지 말고 시스템으로</p></div>
+      <div class="card icard step"><div class="n">3</div><h3>ETF 매수</h3><p>S&amp;P500 지수 추종 상품 사 모으기</p></div>
+      <div class="card icard step"><div class="n">4</div><h3>환급금 재투자</h3><p>연말정산 환급금도 같은 계좌로</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Bonus -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">⭐ BONUS</span>
+      <h2>늦을수록,<br>매달 내야 할 돈이 커져요</h2>
+      <p>60세에 똑같이 약 5.17억을 만들려면</p>
+    </div>
+    <div class="grid3">
+      <div class="card icard" style="border:2px solid var(--blue)"><div class="e">🌱</div><h3>30세 시작</h3><div class="big blue">월 20만원</div><p>30년 적립</p></div>
+      <div class="card icard"><div class="e">🌿</div><h3>40세 시작</h3><div class="big">월 약 60만원</div><p>20년 적립</p></div>
+      <div class="card icard"><div class="e">🍂</div><h3>50세 시작</h3><div class="big" style="color:var(--red)">월 약 221만원</div><p>10년 적립</p></div>
+    </div>
+    <div class="sec-head" style="margin:56px 0 0">
+      <h2 style="font-size:clamp(24px,4.4vw,40px)">10년 늦으면 3배, 20년 늦으면 <span class="blue">11배</span>.<br>가장 싼 시작은 오늘이에요.</h2>
+    </div>
+  </div>
+</section>
+
+<div class="cta" id="cta">
+  <h2>혼자 하기 막막하다면,<br>1:1로 짜드릴게요</h2>
+  <p>짧은 교육 + 내 상황에 맞는 연금 전략까지. 무료로 상담받아 보세요.</p>
+  <a class="b-blue" href="#" data-cta>무료 자문 신청하기 →</a>
+</div>
+
+<div style="height:100px"></div>
+
+<div class="sticky" id="sticky"><a href="#" data-cta>나에게 맞는 연금 전략 무료 자문 받기</a></div>
+
+<script>
+// ▼ 자문 신청 링크를 여기에 넣으세요 (예: 카카오 오픈채팅, 구글폼, 인스타 프로필)
+var CTA_URL = "#";
+
+(function(){
+  document.querySelectorAll('[data-cta]').forEach(function(a){ if(CTA_URL && CTA_URL!=="#"){ a.href=CTA_URL; a.target="_blank"; a.rel="noopener"; } else { a.href="#cta"; } });
+
+  // marquee tiles
+  var t1=[['💰','월 20만원','커피·배달 줄이면 OK'],['🇺🇸','S&P500','미국 대표기업 500개'],['📈','연평균 10%','지난 수십 년 장기 평균'],['🎁','세액공제 16.5%','매년 약 39.6만원 환급'],['🔁','환급금 재투자','공짜 돈이 또 돈을 번다'],['🏦','연금저축펀드','비대면 10분 개설']];
+  var t2=[['🎯','60세 5.17억','원금 대비 약 6.2배'],['💸','월 100만원','평생 꺼내 쓰는 연금'],['🛡️','인출률 2.3%','4% 룰의 절반 수준'],['⏳','30년 복리','시간이 일하게 하기'],['🤖','자동이체','의지 말고 시스템'],['🧑‍💼','1:1 자문','나에게 맞는 은퇴 전략']];
+  function fill(id,arr){ var h=arr.concat(arr).map(function(t){return '<div class="tile"><div class="e">'+t[0]+'</div><div><h3>'+t[1].replace('&','&amp;')+'</h3><p>'+t[2]+'</p></div></div>'}).join(''); document.getElementById(id).innerHTML=h; }
+  fill('row1',t1); fill('row2',t2);
+
+  // sticky CTA (mobile)
+  var st=document.getElementById('sticky'), cta=document.getElementById('cta');
+  window.addEventListener('scroll',function(){
+    var r=cta.getBoundingClientRect();
+    st.classList.toggle('show', window.scrollY>600 && r.top>window.innerHeight);
+  },{passive:true});
+
+  function sim(age,pay,rate,cr){
+    var v=0,prin=0,years=60-age,series=[{v:0,p:0}];
+    for(var y=0;y<years;y++){
+      for(var m=0;m<12;m++){ v=v*(1+rate/12)+pay; prin+=pay; }
+      var refund=Math.min(pay*12,600)*cr; v+=refund; prin+=refund;
+      series.push({v:v,p:prin});
+    }
+    return {fv:v,prin:prin,series:series};
+  }
+  function won(man){ if(man>=10000) return '약 '+(man/10000).toFixed(1)+'억원'; return Math.round(man).toLocaleString()+'만원'; }
+
+  // chart
+  var s=sim(30,20,0.10,0.165).series, svg=document.getElementById('growth'); if(svg){
+  var W=640,H=320,L=48,R=16,T=20,B=36,maxV=55000;
+  function x(i){return L+(W-L-R)*i/30} function y(v){return T+(H-T-B)*(1-v/maxV)}
+  var h='<defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b3ff5" stop-opacity=".22"/><stop offset="1" stop-color="#3b3ff5" stop-opacity="0"/></linearGradient></defs>';
+  [0,10000,20000,30000,40000,50000].forEach(function(t){ h+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y(t)+'" y2="'+y(t)+'" stroke="#ececf3"/><text x="'+(L-8)+'" y="'+(y(t)+4)+'" font-size="12" fill="#8c909c" text-anchor="end">'+(t/10000)+'억</text>'; });
+  [30,35,40,45,50,55,60].forEach(function(a){ h+='<text x="'+x(a-30)+'" y="'+(H-12)+'" font-size="12" fill="#8c909c" text-anchor="middle">'+a+'세</text>'; });
+  var bw=(W-L-R)/30*0.6;
+  s.forEach(function(d,i){ if(!i)return; h+='<rect x="'+(x(i)-bw/2)+'" y="'+y(d.p)+'" width="'+bw+'" height="'+(y(0)-y(d.p))+'" fill="#cfd0f5" rx="2"/>'; });
+  var path='M'+s.map(function(d,i){return x(i)+','+y(d.v)}).join(' L');
+  h+='<path d="'+path+' L'+x(30)+','+y(0)+' L'+x(0)+','+y(0)+'Z" fill="url(#ga)"/><path d="'+path+'" fill="none" stroke="#3b3ff5" stroke-width="3.5" stroke-linejoin="round"/>';
+  var last=s[30]; h+='<circle cx="'+x(30)+'" cy="'+y(last.v)+'" r="7" fill="#fff" stroke="#3b3ff5" stroke-width="3.5"/>';
+  h+='<text x="'+(x(30)-12)+'" y="'+(y(last.v)+5)+'" font-size="15" font-weight="800" fill="#3b3ff5" text-anchor="end">약 5.2억</text>';
+  var p15=s[15]; h+='<text x="'+x(15)+'" y="'+(y(p15.v)-12)+'" font-size="12" fill="#4b4f5c" text-anchor="middle">45세 약 '+(p15.v/10000).toFixed(1)+'억</text>';
+  svg.innerHTML=h; }
+
+  // calculator
+  var $=function(id){return document.getElementById(id)}, cr=0.165;
+  $('cr').addEventListener('click',function(e){ var b=e.target.closest('button'); if(!b)return; cr=+b.dataset.v; [].forEach.call(this.children,function(c){c.classList.toggle('on',c===b)}); upd(); });
+  function upd(){
+    var age=+$('age').value, pay=+$('pay').value, rate=+$('rate').value/100;
+    $('o-age').textContent=age+'세'; $('o-pay').textContent=pay+'만원'; $('o-rate').textContent=(+$('rate').value)+'%';
+    var r=sim(age,pay,rate,cr);
+    $('r-prin').textContent=won(r.prin); $('r-fv').textContent=won(r.fv);
+    $('r-wr').textContent=(1200/r.fv*100).toFixed(1)+'%';
+    $('r-4').textContent=won(r.fv*0.04/12);
+  }
+  ['age','pay','rate'].forEach(function(id){$(id).addEventListener('input',upd)});
+  upd();
+})();
+</script>
+</body>
+</html>
