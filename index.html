@@ -43,7 +43,7 @@ b,strong{font-weight:700}
 /* HERO */
 .hero{text-align:center;padding:88px 0 40px}
 .pill{display:inline-flex;align-items:center;gap:8px;background:var(--blue-soft);color:var(--blue);font-weight:700;font-size:14px;padding:8px 16px;border-radius:999px}
-.hero h1{font-size:clamp(38px,7.6vw,76px);font-weight:800;line-height:1.18;letter-spacing:-.04em;margin:24px 0 22px}
+.hero h1,.hero .hero-h{font-size:clamp(38px,7.6vw,76px);font-weight:800;line-height:1.18;letter-spacing:-.04em;margin:24px 0 22px}
 .hero p{font-size:clamp(16px,2.6vw,20px);color:var(--ink-2);max-width:640px;margin:0 auto}
 .hero .cta-row{display:flex;gap:10px;justify-content:center;margin-top:34px;flex-wrap:wrap}
 .hero .cta-row a{padding:16px 26px;font-size:17px;border-radius:12px}
@@ -157,6 +157,19 @@ section{padding:110px 0 0}
 .cmp-diff{margin-top:22px;text-align:center;background:var(--blue-soft);border-radius:14px;padding:14px;font-weight:700;font-size:17px;color:#2d2f8a}
 .cmp-diff b{color:var(--blue)}
 @media (max-width:560px){.cmp-row{grid-template-columns:1fr auto;gap:6px 10px}.cmp-bar{grid-column:1/-1;grid-row:2}.cmp-v{grid-row:1;grid-column:2}}
+
+.spx{padding:26px 26px 20px}
+.spx-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px}
+.spx-name{font-size:20px;font-weight:800}
+.spx-name small{font-size:13px;color:var(--ink-3);font-weight:600;margin-left:4px}
+.spx-price{font-size:clamp(28px,5vw,40px);font-weight:800;letter-spacing:-.03em;line-height:1.2;margin-top:4px}
+.spx-price span{font-size:clamp(14px,2.2vw,18px);color:var(--red);font-weight:700;letter-spacing:0;margin-left:6px;white-space:nowrap}
+.spx-tab{border:1.5px solid #5b6178;color:#3d4256;font-weight:700;font-size:14px;padding:7px 14px;border-radius:999px;white-space:nowrap}
+.spx-pts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.spx-pts div{background:#f7f7fb;border-radius:14px;padding:14px;text-align:center}
+.spx-pts b{display:block;font-size:20px;font-weight:800;color:var(--blue);letter-spacing:-.02em}
+.spx-pts span{font-size:12px;color:var(--ink-3);font-weight:600}
+@media (max-width:560px){.spx{padding:20px 16px 16px}.spx-pts b{font-size:17px}.spx-pts div{padding:12px 6px}.spx-pts span{font-size:11px}.spx-price span{display:block;margin:2px 0 0}}
 
 /* Roadmap */
 .road{position:relative;padding:10px 0 0}
@@ -287,16 +300,76 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
   .vs .big{font-size:24px}
   .vs .card{padding:18px}
 }
+
+/* Lead modal */
+.modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.modal-bg{position:absolute;inset:0;background:rgba(17,19,24,.55);backdrop-filter:blur(4px)}
+.modal-box{position:relative;background:#fff;border-radius:28px;width:100%;max-width:480px;max-height:calc(100vh - 32px);overflow:auto;padding:34px 28px 28px;box-shadow:0 30px 80px -20px rgba(17,19,24,.5);animation:pop .25s ease}
+@keyframes pop{from{transform:translateY(12px);opacity:0}}
+.modal-x{position:absolute;right:18px;top:16px;border:0;background:#f3f3f8;width:36px;height:36px;border-radius:50%;font-size:15px;cursor:pointer;color:var(--ink-2)}
+.modal-box h3{font-size:26px;font-weight:800;letter-spacing:-.03em;line-height:1.3;margin:14px 0 6px}
+.m-sub{color:var(--ink-2);font-size:15px;margin-bottom:20px}
+.f{display:block;font-size:14px;font-weight:700;margin-bottom:14px}
+.f input,.f select{display:block;width:100%;margin-top:6px;border:1.5px solid #e3e4ec;border-radius:12px;padding:14px;font:inherit;font-size:16px;font-weight:500;background:#fff;color:var(--ink);outline:none;transition:border-color .15s}
+.f input:focus,.f select:focus{border-color:var(--blue)}
+.f input.bad,.f select.bad{border-color:var(--red)}
+.f-row{display:grid;grid-template-columns:1fr 1.4fr;gap:12px}
+.lock{display:block;margin-top:6px;font-size:12px;font-weight:600;color:var(--green)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.agree{background:#f7f7fb;border-radius:16px;padding:14px 16px;margin-top:4px}
+.chk{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;cursor:pointer;padding:6px 0}
+.chk input{width:20px;height:20px;accent-color:var(--blue);flex:0 0 auto}
+.chk.all{font-weight:800;font-size:15px;border-bottom:1px solid #e6e6ef;padding-bottom:10px;margin-bottom:4px}
+.chk-item{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.more{border:0;background:none;color:var(--ink-3);font:inherit;font-size:13px;text-decoration:underline;cursor:pointer;flex:0 0 auto}
+.terms{display:none;font-size:12px;color:var(--ink-2);background:#fff;border-radius:10px;padding:10px 12px;margin:2px 0 6px;line-height:1.7}
+.terms.show{display:block}
+.f-err{color:var(--red);font-size:14px;font-weight:600;min-height:20px;margin:10px 0 4px}
+.submit{width:100%;padding:17px;font-size:17px;border:0;border-radius:14px;cursor:pointer;font-family:inherit}
+.submit:disabled{opacity:.6;cursor:wait}
+.done{text-align:center;padding:30px 0 6px}
+.done-ic{font-size:54px}
+.done p{color:var(--ink-2);margin:8px 0 22px}
+.done .b-out{cursor:pointer;font-family:inherit}
+@media (max-width:560px){.modal{align-items:flex-end;padding:0}.modal-box{border-radius:24px 24px 0 0;max-height:92vh;padding:28px 20px 24px}}
+
+/* Intro */
+.intro{padding:56px 0 10px}
+.tv{margin:0}
+.tv-frame{position:relative;border-radius:22px;overflow:hidden;box-shadow:0 20px 50px -20px rgba(17,19,24,.45);background:#111}
+.tv-frame img{display:block;width:100%;height:auto;aspect-ratio:867/525;object-fit:cover}
+.tv-sub{position:absolute;left:0;right:0;bottom:0;padding:40px 18px 16px;background:linear-gradient(transparent,rgba(0,0,0,.72));display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.tv-sub .s1{background:rgba(0,0,0,.7);color:#fff;font-weight:800;font-size:clamp(12px,2vw,16px);padding:3px 10px;border-radius:4px}
+.tv-sub .s2{color:#fff;font-weight:900;font-size:clamp(20px,4.4vw,38px);letter-spacing:-.03em;line-height:1.2;text-shadow:0 2px 0 #000,0 0 6px rgba(0,0,0,.6)}
+.tv-sub em{font-style:normal;color:#a6e36b}.tv-sub i{font-style:normal;color:#ffe066}
+.tv figcaption{font-size:12px;color:var(--ink-3);margin-top:10px;text-align:right}
+.intro-h{font-size:clamp(30px,5.8vw,54px);font-weight:800;letter-spacing:-.04em;line-height:1.25;text-align:center;margin:44px 0 0}
+.age100{margin-top:64px;text-align:center}
+.age100-tag{display:inline-block;background:#111318;color:#fff;font-weight:800;font-size:15px;padding:8px 16px;border-radius:999px}
+.age100-q{font-size:clamp(22px,4vw,32px);font-weight:800;letter-spacing:-.03em;margin:16px 0 22px;color:var(--ink)}
+.age100-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:14px;text-align:left}
+.age100-grid>div{background:#f7f7fb;border-radius:22px;padding:24px}
+.age100-grid>div.main{background:linear-gradient(135deg,#3b3ff5,#6a5cff);color:#fff}
+.age100-grid .k{font-size:14px;font-weight:700;color:var(--ink-3)}
+.age100-grid .main .k,.age100-grid .main .s{color:#dcdcff}
+.age100-grid .v{font-size:clamp(38px,7vw,58px);font-weight:800;letter-spacing:-.04em;line-height:1.15;margin:6px 0}
+.age100-grid .v small{font-size:.42em;font-weight:700;margin-left:2px}
+.age100-grid .s{font-size:13px;color:var(--ink-2)}
+.news.mini{margin-top:14px;text-align:left}
+.news.mini .news-title{margin:14px 0 8px}
+.intro-c{text-align:center;font-size:clamp(26px,5vw,44px);font-weight:800;letter-spacing:-.04em;line-height:1.3;margin:64px 0 10px}
+@media (max-width:560px){.age100-grid{grid-template-columns:1fr}.tv-sub{padding:30px 12px 12px}.tv-frame{border-radius:16px}}
 </style>
 </head>
 <body>
 
 <div class="nav-shell">
   <nav class="nav">
-    <a class="logo" href="#top"><i>🌱</i>평생 연금 플랜</a>
+    <a class="logo" href="#intro"><i>🌱</i>평생 연금 플랜</a>
     <div class="menu">
       <a href="#problem">은행의 함정</a>
-      <a href="#why">왜 S&amp;P500</a>
+      <a href="#why">S&amp;P500 10년</a>
       <a href="#how">복리 구조</a>
       <a href="#tax">세액공제</a>
       <a href="#faq">Q&amp;A</a>
@@ -310,14 +383,38 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
   </nav>
 </div>
 
+<section class="intro" id="intro">
+  <div class="wrap narrow">
+    <figure class="tv">
+      <div class="tv-frame">
+        <img src="intro-sbs.jpg" alt="방송 화면 – 20대 후반부터 월 100만 원씩 10년짜리 연금 만기 도래" width="867" height="525">
+        <div class="tv-sub"><span class="s1">20대 후반부터</span><span class="s2"><em>월 100만 원씩</em> 10년짜리 연금 <i>만기 도래</i></span></div>
+      </div>
+      <figcaption>출처: SBS ‘미운 우리 새끼’</figcaption>
+    </figure>
+    <h1 class="intro-h">40대에 이미<br><span class="blue">노후 준비를 끝낸</span> 사람도 있습니다.</h1>
+
+    <div class="age100">
+      <div class="age100-tag">⏳ 100세 시대</div>
+      <p class="age100-q">은퇴 후, 한 달에 얼마가 필요할까요?</p>
+      <div class="age100-grid">
+        <div class="main"><div class="k">부부 기준 적정 노후생활비</div><div class="v">월 298<small>만원</small></div><div class="s">특별한 질병 없이 표준적인 생활을 할 때</div></div>
+        <div><div class="k">최소 노후생활비</div><div class="v">월 217<small>만원</small></div><div class="s">최저 생활만 유지할 때</div></div>
+      </div>
+      <div class="news mini">
+        <div class="news-top"><span class="news-badge">📰 관련 기사</span><span class="news-meta">세계일보 · 2026.05.30</span></div>
+        <h3 class="news-title">“둘이 받아도 120만원?”…<br class="pc">노후 생활비 절반에 그친 국민연금</h3>
+        <p class="news-src">출처: 국민연금연구원 「2024년 국민노후보장패널조사 제10차 부가조사」 · <a href="https://www.segye.com/newsView/20260530504495" target="_blank" rel="noopener">기사 보기</a></p>
+      </div>
+    </div>
+
+    <p class="intro-c">똑똑한 사람은<br><span class="blue">노후를 미리 준비합니다.</span></p>
+  </div>
+</section>
+
 <header class="hero wrap" id="top">
   <span class="pill">💪 커피값으로 만드는 평생 월급</span>
-  <h1>매달 <span class="blue">20만원</span>이<br>평생 <span class="blue">월 100만원</span>이<br>됩니다</h1>
-  <p>30세부터 연금저축펀드 + S&amp;P500.<br class="pc"> 이 조합 하나로 60세에 약 5억, 평생 꺼내 쓰는 돈이 생겨요.</p>
-  <div class="cta-row">
-    <a class="b-out" href="#calc">내 나이로 계산해보기</a>
-    <a class="b-blue" href="#" data-cta>무료 자문 신청</a>
-  </div>
+  <h2 class="hero-h">매달 <span class="blue">20만원</span>이<br>평생 <span class="blue">월 100만원</span>이<br>됩니다</h2>
 </header>
 
 <div class="band" aria-label="핵심 요약">
@@ -345,29 +442,11 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
       </div>
       <p class="news-src">출처: 국가데이터처 「2026년 9월 소비자물가 동향」 · 전년 동월 대비 · <a href="https://biz.sbs.co.kr/amp/article/20000338001" target="_blank" rel="noopener">SBS Biz 기사 보기</a></p>
     </div>
-    <div class="minus narrow">
-      <div class="box"><small>입출금 통장 금리</small>연 0.1%</div>
-      <div class="op">−</div>
-      <div class="box"><small>9월 실제 물가상승률</small>2.9%</div>
-      <div class="op">=</div>
-      <div class="box r"><small>내 돈의 실질 수익률</small>약 −2.8%</div>
-    </div>
-    <p class="narrow" style="text-align:center;color:var(--ink-2);font-size:16px;margin-top:4px">‘2%대로 내려왔다’는 물가도, 통장 이자의 <b style="color:var(--red)">29배</b>예요.</p>
     <div class="card narrow" style="margin-top:28px">
       <h3 style="font-size:20px;font-weight:800">지금 1,000만원, 은행에 두면 실제 가치는? 🫠</h3>
       <div class="mlegend"><span><i class="dash"></i>통장에 찍힌 숫자</span><span><i style="background:var(--red)"></i>실제 구매력 (물가 2% 반영)</span></div>
       <svg id="meltChart" viewBox="0 0 640 330" width="100%" role="img" aria-label="1,000만원을 은행에 30년 두었을 때 통장 금액과 실제 구매력 변화 선그래프"></svg>
       <p style="font-size:14px;color:var(--ink-3);margin-top:12px">통장 숫자는 30년 뒤 약 1,030만원으로 거의 그대로지만, 실제로 살 수 있는 건 <b style="color:var(--red)">552만원어치</b>. 거의 반토막이에요.</p>
-    </div>
-    <div class="facts red narrow" style="margin-top:20px">
-      <div class="facts-head">📊 실제 물가는 이렇게 올랐어요</div>
-      <div class="facts-grid">
-        <div><div class="fv">5.1%</div><div class="fk">2022년<br>소비자물가 상승률</div><div class="fs">통계청 CPI</div></div>
-        <div><div class="fv">2.3%</div><div class="fk">2024년<br>소비자물가 상승률</div><div class="fs">통계청 CPI</div></div>
-        <div><div class="fv">2.1%</div><div class="fk">2025년<br>소비자물가 상승률</div><div class="fs">통계청 CPI</div></div>
-        <div><div class="fv neg">2%</div><div class="fk">한국은행<br>물가안정목표</div><div class="fs">한국은행</div></div>
-      </div>
-      <p class="facts-src">출처: 통계청 소비자물가지수 연평균 상승률 (<a href="https://etfshopping.com/economy/kr-inflation" target="_blank" rel="noopener">정리 자료</a>) · 한국은행 물가안정목표제. 통장 금리·물가는 시기와 은행에 따라 달라요. 위 금액은 단순 계산이에요.</p>
     </div>
     <p class="conclude">은행은 돈을 ‘지켜’ 주지 않아요.<br>물가보다 <span class="blue">빨리 크는 곳</span>에 둬야 합니다.</p>
   </div>
@@ -377,10 +456,24 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
 <section id="why">
   <div class="wrap">
     <div class="sec-head">
-      <span class="tag">01 · WHY</span>
-      <h2>같은 20만원,<br>어디에 두느냐가 전부예요</h2>
-      <p>커피 몇 잔, 배달 한두 번. 누구나 만들 수 있는 돈이에요.</p>
+      <span class="tag">01 · WHY S&amp;P500</span>
+      <h2>역사는<br><span class="blue">거스를 수 없어요</span></h2>
+      <p>미국 상위 500개 기업에 한 번에 투자하는 S&amp;P500 지수.<br class="pc"> 위기는 있었지만, 결국 다시 올라갔어요.</p>
     </div>
+    <div class="card spx narrow">
+      <div class="spx-top">
+        <div><div class="spx-name">S&amp;P 500 <small>.INX</small></div><div class="spx-price">7,649.19 <span>▲ 5,522.48 (+259.71%)</span></div></div>
+        <span class="spx-tab">최근 10년</span>
+      </div>
+      <svg id="spxChart" viewBox="0 0 640 320" width="100%" role="img" aria-label="S&amp;P 500 지수 최근 10년 추이 선그래프"></svg>
+      <div class="spx-pts">
+        <div><b>+259.71%</b><span>10년 상승률</span></div>
+        <div><b>약 3.6배</b><span>10년 만에</span></div>
+        <div><b>폭락 2번</b><span>모두 회복·신고가</span></div>
+      </div>
+      <p class="facts-src">출처: 네이버 증권 S&amp;P 500(.INX) 10년 차트 (2026.10 기준) · 연말 종가·저점은 S&amp;P Dow Jones Indices 기준. 과거 수익률이 미래를 보장하지 않아요.</p>
+    </div>
+    <p class="conclude">그래서 같은 20만원도,<br><span class="blue">미국 상위 500개 기업 ETF</span>에 넣어야 해요.</p>
     <div class="facts narrow">
       <div class="facts-head">📊 객관적 데이터로 확인하기</div>
       <div class="facts-grid">
@@ -593,14 +686,85 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
 
 <div style="height:100px"></div>
 
+
+<!-- 자문 신청 모달 -->
+<div class="modal" id="leadModal" aria-hidden="true">
+  <div class="modal-bg" data-close></div>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="leadTitle">
+    <button class="modal-x" type="button" data-close aria-label="닫기">✕</button>
+    <form id="leadForm" novalidate>
+      <span class="pill">🧑‍💼 무료 1:1 연금 자문</span>
+      <h3 id="leadTitle">나에게 맞는 연금 전략,<br>무료로 받아보세요</h3>
+      <p class="m-sub">남겨주시면 담당 자산관리사가 직접 연락드려요.</p>
+      <label class="f">이름<input name="name" type="text" maxlength="30" autocomplete="name" placeholder="홍길동" required></label>
+      <label class="f">휴대폰 번호<input name="phone" type="tel" inputmode="numeric" maxlength="13" autocomplete="tel" placeholder="010-0000-0000" required>
+        <span class="lock">🔒 개인정보는 암호화된 경로로 전송되며, 상담 연락 외 용도로 사용하지 않아요.</span></label>
+      <div class="f-row">
+        <label class="f">나이<input name="age" type="number" inputmode="numeric" min="15" max="100" placeholder="30" required></label>
+        <label class="f">목표 수령액 (월)
+          <select name="goal" required>
+            <option value="">선택해주세요</option>
+            <option>월 50만원</option><option>월 100만원</option><option>월 150만원</option><option>월 200만원 이상</option><option>아직 모르겠어요</option>
+          </select></label>
+      </div>
+      <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="agree">
+        <label class="chk all"><input type="checkbox" id="agreeAll"><span>전체 동의</span></label>
+        <div class="chk-item"><label class="chk"><input type="checkbox" name="agreePrivacy" required><span>[필수] 개인정보 수집·이용 동의</span></label><button type="button" class="more" data-more="t1">보기</button></div>
+        <div class="terms" id="t1">· 수집 항목: 이름, 휴대폰 번호, 나이, 목표 수령액<br>· 이용 목적: 연금·노후 설계 상담 연락 및 안내<br>· 보유 기간: 상담 종료 후 1년 (요청 시 즉시 파기)<br>· 동의를 거부할 수 있으며, 거부 시 상담 신청이 제한돼요.</div>
+        <div class="chk-item"><label class="chk"><input type="checkbox" name="agreeThird" required><span>[필수] 개인정보 제3자 제공 동의</span></label><button type="button" class="more" data-more="t2">보기</button></div>
+        <div class="terms" id="t2">· 제공받는 자: <span data-partner>상담을 진행하는 제휴 금융 상담 파트너</span><br>· 제공 목적: 연금·노후 설계 상담 진행<br>· 제공 항목: 이름, 휴대폰 번호, 나이, 목표 수령액<br>· 보유 기간: 상담 종료 후 1년<br>· 동의를 거부할 수 있으며, 거부 시 상담 신청이 제한돼요.</div>
+      </div>
+      <p class="f-err" id="leadErr" role="alert"></p>
+      <button class="b-blue submit" type="submit" id="leadBtn">무료 자문 신청하기</button>
+    </form>
+    <div class="done" id="leadDone" hidden>
+      <div class="done-ic">✅</div>
+      <h3>신청이 완료됐어요!</h3>
+      <p>영업일 기준 1~2일 안에 남겨주신 번호로 연락드릴게요.</p>
+      <button class="b-out" type="button" data-close>닫기</button>
+    </div>
+  </div>
+</div>
+
 <div class="sticky" id="sticky"><a href="#" data-cta>나에게 맞는 연금 전략 무료 자문 받기</a></div>
 
 <script>
-// ▼ 자문 신청 링크를 여기에 넣으세요 (예: 카카오 오픈채팅, 구글폼, 인스타 프로필)
-var CTA_URL = "#";
+// ▼ 구글 Apps Script 웹 앱 URL (https://script.google.com/macros/s/.../exec)
+var SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbxuNwXNARo1Gn_76vJlGsY_C5xLOhSmWqaQXraAHO3favAPGly5Pa9vnRAhToPDxFV3/exec";
 
 (function(){
-  document.querySelectorAll('[data-cta]').forEach(function(a){ if(CTA_URL && CTA_URL!=="#"){ a.href=CTA_URL; a.target="_blank"; a.rel="noopener"; } else { a.href="#cta"; } });
+  // lead form modal
+  var modal=document.getElementById('leadModal'), form=document.getElementById('leadForm'), done=document.getElementById('leadDone'), err=document.getElementById('leadErr'), btn=document.getElementById('leadBtn');
+  function openM(e){ if(e) e.preventDefault(); modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; setTimeout(function(){ if(!done.hidden) return; form.name.focus(); },50); }
+  function closeM(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  document.querySelectorAll('[data-cta]').forEach(function(a){ a.href='#apply'; a.addEventListener('click',openM); });
+  modal.querySelectorAll('[data-close]').forEach(function(b){ b.addEventListener('click',closeM); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeM(); });
+  if(location.hash==='#apply') openM();
+  modal.querySelectorAll('[data-more]').forEach(function(b){ b.addEventListener('click',function(){ document.getElementById(b.dataset.more).classList.toggle('show'); }); });
+  var all=document.getElementById('agreeAll'), boxes=[form.agreePrivacy,form.agreeThird];
+  all.addEventListener('change',function(){ boxes.forEach(function(b){ b.checked=all.checked; }); });
+  boxes.forEach(function(b){ b.addEventListener('change',function(){ all.checked=boxes.every(function(x){return x.checked}); }); });
+  form.phone.addEventListener('input',function(){ var d=this.value.replace(/[^0-9]/g,'').slice(0,11); this.value=d.length<4?d:d.length<8?d.slice(0,3)+'-'+d.slice(3):d.slice(0,3)+'-'+d.slice(3,d.length-4)+'-'+d.slice(-4); });
+  form.addEventListener('submit',function(e){
+    e.preventDefault(); err.textContent=''; [].forEach.call(form.querySelectorAll('.bad'),function(x){x.classList.remove('bad')});
+    var name=form.name.value.trim(), phone=form.phone.value.replace(/[^0-9]/g,''), age=parseInt(form.age.value,10), goal=form.goal.value;
+    function fail(el,msg){ if(el&&el.classList) el.classList.add('bad'); err.textContent=msg; if(el&&el.focus) el.focus(); }
+    if(!name) return fail(form.name,'이름을 입력해주세요.');
+    if(!/^01[016789][0-9]{7,8}$/.test(phone)) return fail(form.phone,'휴대폰 번호를 정확히 입력해주세요.');
+    if(!(age>=15&&age<=100)) return fail(form.age,'나이를 정확히 입력해주세요.');
+    if(!goal) return fail(form.goal,'목표 수령액을 선택해주세요.');
+    if(!form.agreePrivacy.checked||!form.agreeThird.checked) return fail(null,'필수 동의 항목에 체크해주세요.');
+    if(!SHEET_ENDPOINT){ return fail(null,'접수 시스템 준비 중이에요. 잠시 후 다시 시도해주세요.'); }
+    var payload=JSON.stringify({name:name,phone:phone,age:age,goal:goal,agreePrivacy:true,agreeThird:true,website:form.website.value,source:(location.search||'direct')+' '+(document.referrer||'')});
+    btn.disabled=true; btn.textContent='신청 중…';
+    function ok(){ form.hidden=true; done.hidden=false; btn.disabled=false; btn.textContent='무료 자문 신청하기'; form.reset(); }
+    fetch(SHEET_ENDPOINT,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:payload})
+      .then(function(r){ return r.json(); })
+      .then(function(j){ if(j&&j.ok) ok(); else { btn.disabled=false; btn.textContent='무료 자문 신청하기'; err.textContent='입력 내용을 다시 확인해주세요.'; } })
+      .catch(function(){ fetch(SHEET_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:payload}).then(ok).catch(function(){ btn.disabled=false; btn.textContent='무료 자문 신청하기'; err.textContent='네트워크 오류가 발생했어요. 다시 시도해주세요.'; }); });
+  });
 
   // marquee tiles
   var t1=[['💰','월 20만원','커피·배달 줄이면 OK'],['🇺🇸','S&P500','미국 대표기업 500개'],['📈','연평균 10%','지난 수십 년 장기 평균'],['🎁','세액공제 16.5%','매년 약 39.6만원 환급'],['🔁','환급금 재투자','공짜 돈이 또 돈을 번다'],['🏦','연금저축펀드','비대면 10분 개설']];
@@ -643,6 +807,33 @@ var CTA_URL = "#";
   svg.innerHTML=h; }
 
 
+
+
+  // S&P500 10y chart (Naver 10y + year-end closes)
+  (function(){
+    var el=document.getElementById('spxChart'); if(!el) return;
+    var k=Math.min(1.9,Math.max(1,640/(el.clientWidth||640))), H=k>1.3?440:320; el.setAttribute('viewBox','0 0 640 '+H);
+    var d=[[2016.79,2126.71],[2016.99,2238.83],[2017.99,2673.61],[2018.99,2506.85],[2019.13,2744.73],[2019.99,3230.78],[2020.13,3386.15],[2020.22,2237.40],[2020.99,3756.07],[2021.99,4766.18],[2022.01,4796.56],[2022.78,3577.03],[2022.99,3839.50],[2023.99,4769.83],[2024.99,5881.63],[2025.99,6845.50],[2026.80,7649.19]];
+    var W=640,L=14,R=16,T=30,B=22+16*k,x0=2016.79,x1=2026.8,lo=1400,hi=8400;
+    function X(t){return L+(W-L-R)*(t-x0)/(x1-x0)} function Y(v){return T+(H-T-B)*(1-(v-lo)/(hi-lo))}
+    function f(n){return (n*k).toFixed(0)}
+    var g='<defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b3ff5" stop-opacity=".22"/><stop offset="1" stop-color="#3b3ff5" stop-opacity="0"/></linearGradient></defs>';
+    [2800,5600,8400].forEach(function(v){ g+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(v)+'" y2="'+Y(v)+'" stroke="#f0f0f6"/><text x="'+(W-R)+'" y="'+(Y(v)-6)+'" font-size="'+f(11)+'" fill="#a3a7b3" text-anchor="end">'+v.toLocaleString()+'</text>'; });
+    [2018,2021,2024].forEach(function(y){ g+='<text x="'+X(y)+'" y="'+(H-6)+'" font-size="'+f(13)+'" font-weight="600" fill="#8c909c" text-anchor="middle">'+y+'</text>'; });
+    var P=d.map(function(p){return [X(p[0]),Y(p[1])]}), n=P.length, dx=[], m=[], sl=[];
+    for(var i=0;i<n-1;i++){ dx[i]=P[i+1][0]-P[i][0]; sl[i]=(P[i+1][1]-P[i][1])/dx[i]; }
+    m[0]=sl[0]; m[n-1]=sl[n-2];
+    for(var i=1;i<n-1;i++){ m[i]=(sl[i-1]*sl[i]<=0)?0:(3*(dx[i-1]+dx[i]))/((2*dx[i]+dx[i-1])/sl[i-1]+(dx[i]+2*dx[i-1])/sl[i]); }
+    var path='M'+P[0][0].toFixed(1)+','+P[0][1].toFixed(1);
+    for(var i=0;i<n-1;i++){ var h=dx[i]/3; path+=' C'+(P[i][0]+h).toFixed(1)+','+(P[i][1]+m[i]*h).toFixed(1)+' '+(P[i+1][0]-h).toFixed(1)+','+(P[i+1][1]-m[i+1]*h).toFixed(1)+' '+P[i+1][0].toFixed(1)+','+P[i+1][1].toFixed(1); }
+    g+='<path d="'+path+' L'+X(x1)+','+Y(lo)+' L'+X(x0)+','+Y(lo)+'Z" fill="url(#sg)"/>';
+    g+='<path d="'+path+'" fill="none" stroke="#3b3ff5" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>';
+    function dip(t,v,txt){ var x=X(t),y=Y(v); g+='<circle cx="'+x+'" cy="'+y+'" r="5" fill="#fff" stroke="#f0506e" stroke-width="3"/><text x="'+x+'" y="'+(y+16+10*k)+'" font-size="'+f(12)+'" font-weight="800" fill="#f0506e" text-anchor="middle">'+txt+'</text>'; }
+    dip(2020.22,2237.40,'코로나 −34%'); dip(2022.78,3577.03,'금리 쇼크 −25%');
+    var sx=X(x0),sy=Y(2126.71); g+='<circle cx="'+sx+'" cy="'+sy+'" r="5" fill="#3b3ff5"/><text x="'+(sx+2)+'" y="'+(sy-12)+'" font-size="'+f(13)+'" font-weight="700" fill="#4b4f5c">2,126</text>';
+    var ex=X(x1),ey=Y(7649.19); g+='<circle cx="'+ex+'" cy="'+ey+'" r="8" fill="#3b3ff5" stroke="#fff" stroke-width="3"/><text x="'+(ex-14)+'" y="'+(ey+6)+'" font-size="'+f(16)+'" font-weight="800" fill="#3b3ff5" text-anchor="end">7,649</text>';
+    el.innerHTML=g;
+  })();
 
   // roadmap line chart
   (function(){
