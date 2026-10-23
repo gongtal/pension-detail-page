@@ -366,10 +366,6 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
       <h2>같은 20만원,<br>어디에 두느냐가 전부예요</h2>
       <p>커피 몇 잔, 배달 한두 번. 누구나 만들 수 있는 돈이에요.</p>
     </div>
-    <div class="grid2 vs narrow">
-      <div class="card icard bad"><div class="e">🏦</div><h3>입출금 통장</h3><div class="big">연 0.1% 안팎</div><p>물가를 못 이겨요 😨</p></div>
-      <div class="card icard good"><div class="e">🇺🇸</div><h3>S&amp;P500</h3><div class="big">연평균 약 10%</div><p>수십 년간의 장기 평균</p></div>
-    </div>
     <div class="facts narrow">
       <div class="facts-head">📊 객관적 데이터로 확인하기</div>
       <div class="facts-grid">
@@ -380,11 +376,6 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
       </div>
       <p class="facts-note">※ 실질 수익률은 물가상승분을 뺀 값이에요. 2008년 금융위기처럼 한 해에 30% 이상 하락한 해도 있었어요. 과거 수익률이 미래 수익을 보장하지 않아요.</p>
       <p class="facts-src">출처: <a href="https://www.fidelity.com/learning-center/trading-investing/sp-500-average-return" target="_blank" rel="noopener">Fidelity, “S&amp;P 500 average return”</a> · <a href="https://www.fool.com/research/sp-500-annual-returns/" target="_blank" rel="noopener">The Motley Fool, “S&amp;P 500 Annual Returns”</a></p>
-    </div>
-    <div class="narrow body" style="margin-top:36px">
-      <p><b>S&amp;P500</b> = 애플·구글·테슬라 등 미국 대표 기업 500개. 오르내림은 있었지만, 길게 보면 <span class="hl">연 10% 통장에 넣어둔 효과</span>였어요.</p>
-      <div class="note">💡 <b>전제</b> — 과거 평균을 근거로 한 가정이에요. 미래 수익을 보장하지는 않아요.</div>
-      <p>그리고 핵심은 <b>‘연금저축펀드’ 계좌</b>에서 사는 것. 이유는 03에서 알려드릴게요.</p>
     </div>
   </div>
 </section>
@@ -399,16 +390,8 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
     </div>
     <div class="card road">
       <div class="road-steps"><span>📅 매달 20만원</span><span>📈 연 10% 복리</span><span>🎁 환급금 매년 39.6만원 재투자</span></div>
-      <div class="road-grid">
-        <div class="col"><div class="val">0원<small>원금 0</small></div><div class="stack" style="--p:1%"></div><div class="age">30세</div><span class="flag" style="--b:64px">🚀 시작</span></div>
-        <div class="col"><div class="val">1,793만<small>원금 1,398만</small></div><div class="stack" style="--p:3.4%"><div class="gain" style="flex:395"></div><div class="prin" style="flex:1398"></div></div><div class="age">35세</div></div>
-        <div class="col"><div class="val">4,742만<small>원금 2,796만</small></div><div class="stack" style="--p:9.1%"><div class="gain" style="flex:1946"></div><div class="prin" style="flex:2796"></div></div><div class="age">40세</div></div>
-        <div class="col"><div class="val">9,596만<small>원금 4,194만</small></div><div class="stack" style="--p:18.3%"><div class="gain" style="flex:5402"></div><div class="prin" style="flex:4194"></div></div><div class="age">45세</div><span class="flag" style="--b:calc(18.3% + 96px)">💯 1억 눈앞</span></div>
-        <div class="col"><div class="val">1.76억<small>원금 5,592만</small></div><div class="stack" style="--p:33.6%"><div class="gain" style="flex:11989"></div><div class="prin" style="flex:5592"></div></div><div class="age">50세</div></div>
-        <div class="col"><div class="val">3.07억<small>원금 6,990만</small></div><div class="stack" style="--p:58.7%"><div class="gain" style="flex:23728"></div><div class="prin" style="flex:6990"></div></div><div class="age">55세</div></div>
-        <div class="col goal"><div class="val">약 5.2억<small>원금 8,388만</small></div><div class="stack" style="--p:78%"><div class="gain" style="flex:43946"></div><div class="prin" style="flex:8388"></div></div><div class="age">60세</div><span class="flag" style="background:var(--blue);--b:calc(78% + 104px)">🎉 월 100만원 시작</span></div>
-      </div>
-      <div class="road-legend"><span><i style="background:#cfd0f5"></i>내가 넣은 원금(환급 포함)</span><span><i style="background:var(--blue)"></i>복리로 불어난 수익</span></div>
+      <svg id="roadChart" viewBox="0 0 640 380" width="100%" role="img" aria-label="30세부터 60세까지 매달 20만원 연 10% 투자 시 평가금액과 원금 선그래프"></svg>
+      <div class="road-legend"><span><i class="dash" style="background:repeating-linear-gradient(90deg,#9ea1d8 0 5px,transparent 5px 9px);height:4px;width:18px;vertical-align:3px"></i>내가 넣은 원금(환급 포함)</span><span><i style="background:var(--blue);height:4px;width:18px;vertical-align:3px"></i>평가금액 (연 10% 복리)</span></div>
       <p style="font-size:13px;color:var(--ink-3);margin-top:12px;text-align:center">마지막 15년에 전체 자산의 80% 이상이 만들어져요. 월복리 단순 계산이라 본문 수치(5억 1,723만원)와 소폭 차이가 있어요.</p>
     </div>
     <div class="result">
@@ -524,28 +507,11 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
   </div>
 </section>
 
-<!-- 6 -->
-<section>
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="tag">06 · CHECK</span>
-      <h2>시작 전,<br>꼭 알아둘 5가지</h2>
-    </div>
-    <div class="warn narrow">
-      <details open><summary><span class="e">📉</span>10%는 평균일 뿐, 보장이 아니에요</summary><p>-30% 빠지는 해도, +30% 오르는 해도 있어요. 30년 평균이 그랬다는 뜻이니 시장 공부는 필수예요.</p></details>
-      <details><summary><span class="e">🔒</span>중간에 빼면 손해예요</summary><p>세액공제 받은 돈을 중도 인출하면 세금을 더 낼 수 있어요. 오래 묶어둘 수 있는 돈으로 시작하세요.</p></details>
-      <details><summary><span class="e">🧾</span>공제율은 소득에 따라 달라요</summary><p>총급여 약 5,500만원을 넘으면 13.2%가 적용돼요.</p></details>
-      <details><summary><span class="e">🛒</span>물가는 반영되지 않았어요</summary><p>30년 뒤 체감 가치는 더 낮아요. 월급이 오르면 납입액도 함께 늘려가세요.</p></details>
-      <details><summary><span class="e">🧩</span>연금저축 하나로는 부족해요</summary><p>이해를 돕기 위한 단순 계산이에요. 여러 연금을 조합해야 나중에 후회가 없어요.</p></details>
-    </div>
-  </div>
-</section>
-
 <!-- 7 -->
 <section id="start">
   <div class="wrap">
     <div class="sec-head">
-      <span class="tag">07 · START</span>
+      <span class="tag">06 · START</span>
       <h2>오늘 10분이면<br>시작할 수 있어요</h2>
     </div>
     <div class="grid4">
@@ -633,6 +599,45 @@ var CTA_URL = "#";
   var p15=s[15]; h+='<text x="'+x(15)+'" y="'+(y(p15.v)-12)+'" font-size="12" fill="#4b4f5c" text-anchor="middle">45세 약 '+(p15.v/10000).toFixed(1)+'억</text>';
   svg.innerHTML=h; }
 
+
+
+  // roadmap line chart
+  (function(){
+    var el=document.getElementById('roadChart'); if(!el) return;
+    var k=Math.min(1.9,Math.max(1,640/(el.clientWidth||640))), H=k>1.3?520:380;
+    el.setAttribute('viewBox','0 0 640 '+H);
+    var W=640,L=24,R=24,T=70,B=26+20*k, maxV=56000;
+    var ser=sim(30,20,0.10,0.165).series;
+    function X(i){return L+(W-L-R)*i/30} function Y(v){return T+(H-T-B)*(1-v/maxV)}
+    function f(n){return (n*k).toFixed(0)}
+    function path(key){return 'M'+ser.map(function(d,i){return X(i).toFixed(1)+','+Y(d[key]).toFixed(1)}).join(' L')}
+    var g='<defs><linearGradient id="rg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b3ff5" stop-opacity=".25"/><stop offset="1" stop-color="#3b3ff5" stop-opacity="0"/></linearGradient></defs>';
+    var mob=k>1.3;
+    [0,5,10,15,20,25,30].forEach(function(i){ if(mob&&i%10) return; g+='<line x1="'+X(i)+'" x2="'+X(i)+'" y1="'+T+'" y2="'+(H-B)+'" stroke="#f0f0f6"/>';
+      g+='<text x="'+X(i)+'" y="'+(H-8)+'" font-size="'+f(14)+'" font-weight="700" fill="#8c909c" text-anchor="'+(i===0?'start':i===30?'end':'middle')+'">'+(30+i)+'세</text>'; });
+    g+='<path d="'+path('v')+' L'+X(30)+','+Y(0)+' L'+X(0)+','+Y(0)+'Z" fill="url(#rg)"/>';
+    g+='<path d="'+path('p')+'" fill="none" stroke="#9ea1d8" stroke-width="2.5" stroke-dasharray="7 6"/>';
+    g+='<path d="'+path('v')+'" fill="none" stroke="#3b3ff5" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>';
+    function lab(v){ return v>=10000?(v/10000).toFixed(v>=50000?1:2).replace(/0$/,'')+'억':Math.round(v).toLocaleString()+'만'; }
+    (mob?[10,20,25]:[10,15,20,25]).forEach(function(i){ var d=ser[i], x=X(i), y=Y(d.v);
+      g+='<circle cx="'+x+'" cy="'+y+'" r="6" fill="#fff" stroke="#3b3ff5" stroke-width="3"/>';
+      g+='<text x="'+x+'" y="'+(y-14)+'" font-size="'+f(16)+'" font-weight="800" fill="#111318" text-anchor="middle">'+lab(d.v)+'</text>'; });
+    // start
+    g+='<circle cx="'+X(0)+'" cy="'+Y(0)+'" r="6" fill="#3b3ff5"/>';
+    // 45 flag
+    var y45=Y(ser[15].v);
+    if(!mob) g+='<text x="'+X(15)+'" y="'+(y45-14-20*k)+'" font-size="'+f(13)+'" font-weight="700" fill="#8c909c" text-anchor="middle">💯 1억 눈앞</text>';
+    // goal
+    var gy=Y(ser[30].v), gx=X(30);
+    g+='<circle cx="'+gx+'" cy="'+gy+'" r="9" fill="#3b3ff5" stroke="#fff" stroke-width="3"/>';
+    g+='<text x="'+(gx-16)+'" y="'+(gy+8)+'" font-size="'+f(24)+'" font-weight="800" fill="#3b3ff5" text-anchor="end">약 5.2억</text>';
+    var fx=mob?L:(gx-14-150*k), fy=mob?(T-40-10*k):(gy-30-24*k);
+    g+='<rect x="'+fx+'" y="'+fy+'" width="'+(150*k)+'" height="'+(26*k)+'" rx="'+(13*k)+'" fill="#3b3ff5"/>';
+    g+='<text x="'+(fx+75*k)+'" y="'+(fy+18*k)+'" font-size="'+f(13)+'" font-weight="700" fill="#fff" text-anchor="middle">🎉 월 100만원 시작</text>';
+    var py=Y(ser[30].p);
+    g+='<text x="'+(gx-6)+'" y="'+(py-10)+'" font-size="'+f(13)+'" font-weight="700" fill="#7d80c2" text-anchor="end">원금 8,388만</text>';
+    el.innerHTML=g;
+  })();
 
   // bank melt line chart
   (function(){
