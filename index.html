@@ -144,6 +144,20 @@ section{padding:110px 0 0}
 .minus{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:12px;margin:22px auto 10px}
 .minus .box{text-align:center}
 
+.cmp{display:grid;gap:16px;margin-top:22px}
+.cmp-row{display:grid;grid-template-columns:200px 1fr 92px;align-items:center;gap:14px}
+.cmp-l{font-weight:700;font-size:15px;line-height:1.35}
+.cmp-l small{display:block;font-size:12px;color:var(--ink-3);font-weight:600}
+.cmp-bar{height:14px;background:#f0f0f6;border-radius:99px;overflow:hidden}
+.cmp-bar div{height:100%;background:#c3c5d6;border-radius:99px}
+.cmp-row.best .cmp-bar div{background:linear-gradient(90deg,#7b7fff,#3b3ff5)}
+.cmp-v{font-weight:800;font-size:18px;text-align:right;color:var(--ink-2)}
+.cmp-row.best .cmp-v{color:var(--blue);font-size:21px}
+.cmp-row.best .cmp-l{color:var(--blue)}
+.cmp-diff{margin-top:22px;text-align:center;background:var(--blue-soft);border-radius:14px;padding:14px;font-weight:700;font-size:17px;color:#2d2f8a}
+.cmp-diff b{color:var(--blue)}
+@media (max-width:560px){.cmp-row{grid-template-columns:1fr auto;gap:6px 10px}.cmp-bar{grid-column:1/-1;grid-row:2}.cmp-v{grid-row:1;grid-column:2}}
+
 /* Roadmap */
 .road{position:relative;padding:10px 0 0}
 .road-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;align-items:end;height:360px;position:relative}
@@ -285,6 +299,7 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
       <a href="#why">왜 S&amp;P500</a>
       <a href="#how">복리 구조</a>
       <a href="#tax">세액공제</a>
+      <a href="#faq">Q&amp;A</a>
       <a href="#calc">계산기</a>
       <a href="#start">시작하기</a>
     </div>
@@ -422,6 +437,34 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
     <div class="narrow body" style="text-align:center">
       <p>이 돈까지 다시 넣으면? <span class="hl">공짜로 생긴 돈이 30년간 또 복리로 불어나요.</span></p>
     </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">🤔 Q&amp;A</span>
+      <h2>“그냥 내가 S&amp;P500<br>사면 되는 거 아니야?”</h2>
+      <p>맞아요, 사는 건 똑같은 S&amp;P500이에요. 다른 건 <b style="color:var(--ink)">‘어느 계좌에서 사느냐’</b> 하나예요.</p>
+    </div>
+    <div class="card narrow">
+      <h3 style="font-size:20px;font-weight:800">같은 월 20만원 · 같은 S&amp;P500 · 30년 후 <span class="blue">세후</span> 금액</h3>
+      <div class="cmp">
+        <div class="cmp-row"><div class="cmp-l">미국 주식 직접 매수<small>해외 상장 ETF (VOO 등)</small></div><div class="cmp-bar"><div style="width:70.5%"></div></div><div class="cmp-v">약 3.69억</div></div>
+        <div class="cmp-row"><div class="cmp-l">일반 증권 계좌<small>국내 상장 S&amp;P500 ETF</small></div><div class="cmp-bar"><div style="width:75.3%"></div></div><div class="cmp-v">약 3.94억</div></div>
+        <div class="cmp-row best"><div class="cmp-l">연금저축펀드 계좌<small>같은 국내 상장 S&amp;P500 ETF</small></div><div class="cmp-bar"><div style="width:94.5%"></div></div><div class="cmp-v">약 4.95억</div></div>
+      </div>
+      <div class="cmp-diff">계좌 하나 바꿨을 뿐인데 <b>약 1억원</b> 차이 💸</div>
+      <p class="facts-src" style="margin-top:12px">※ 연 10%·월복리 단순 계산. 직접 매수: 매매차익 양도세 22%(250만원 공제) · 일반계좌: 매매차익 배당소득세 15.4% · 연금저축: 세액공제 16.5% 환급금 재투자, 받을 때 연금소득세 5.5%를 전액에 적용(가장 보수적). 매년 분배금 과세·환율·수수료는 제외했어요.</p>
+    </div>
+    <div class="grid3" style="margin-top:20px">
+      <div class="card icard"><div class="e">🎁</div><h3>① 넣을 때 돌려받고</h3><p>매년 납입액의 최대 16.5%를 세액공제. 일반계좌는 <b>0원</b>이에요.</p></div>
+      <div class="card icard"><div class="e">⏸️</div><h3>② 굴리는 동안 세금 0원</h3><p>일반계좌는 수익·분배금에 15.4%가 붙지만, 연금계좌는 받을 때까지 <b>과세이연</b>돼요.</p></div>
+      <div class="card icard"><div class="e">🪶</div><h3>③ 받을 때는 3.3~5.5%</h3><p>55세 이후 연금으로 받으면 저율의 <b>연금소득세</b>만 내요.</p></div>
+    </div>
+    <div class="note narrow" style="margin:24px auto">⚖️ <b>솔직하게 말하면</b> — 55세 전에 연금 외 방식으로 빼면 기타소득세 16.5%가 붙어요. 그래서 ‘언제든 꺼낼 돈’은 일반계좌, ‘노후에 쓸 돈’은 연금계좌가 맞아요.</div>
+    <p class="facts-src narrow" style="text-align:center">세율 출처: <a href="https://view.asiae.co.kr/article/2026081915244676925" target="_blank" rel="noopener">아시아경제, 2026.08.21 「잘못 담으면 손해 보는 ETF」</a> · 세법은 개정될 수 있어요.</p>
   </div>
 </section>
 
