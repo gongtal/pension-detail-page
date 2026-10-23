@@ -123,6 +123,10 @@ section{padding:110px 0 0}
 .facts.red .fv{color:var(--red)}
 .conclude{text-align:center;font-size:clamp(20px,3.6vw,28px);font-weight:800;letter-spacing:-.03em;margin-top:40px;line-height:1.45}
 
+.mlegend{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;color:var(--ink-2);margin:14px 0 4px}
+.mlegend i{display:inline-block;width:18px;height:4px;border-radius:2px;margin-right:6px;vertical-align:3px}
+.mlegend i.dash{background:repeating-linear-gradient(90deg,#9aa0ad 0 5px,transparent 5px 9px)}
+
 /* Roadmap */
 .road{position:relative;padding:10px 0 0}
 .road-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;align-items:end;height:360px;position:relative}
@@ -247,6 +251,7 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
   th,td{padding:13px 8px;font-size:14px}
   .author{flex-direction:column;text-align:center}
   br.pc{display:none}
+  .minus{flex-direction:column;gap:4px}.minus .box{width:100%;max-width:300px;text-align:center}.minus .op{line-height:1}
   .vs .big{font-size:24px}
   .vs .card{padding:18px}
 }
@@ -292,8 +297,8 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
   <div class="wrap">
     <div class="sec-head">
       <span class="tag">00 · PROBLEM</span>
-      <h2>은행에 넣어두면,<br>돈이 조용히 녹아요</h2>
-      <p>숫자는 그대로인데, 살 수 있는 건 매년 줄어들어요.</p>
+      <h2>물가상승률 2% 반영 시,<br>30년이면 가치가 <span style="color:var(--red)">45% 하락</span></h2>
+      <p>은행 통장 속 숫자는 그대로인데, 살 수 있는 건 매년 줄어들어요.</p>
     </div>
     <div class="minus">
       <div class="box"><small>입출금 통장 금리</small>연 0.1% 안팎</div>
@@ -304,13 +309,9 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
     </div>
     <div class="card narrow" style="margin-top:28px">
       <h3 style="font-size:20px;font-weight:800">지금 1,000만원, 은행에 두면 실제 가치는? 🫠</h3>
-      <div class="melt">
-        <div class="col"><div class="amt">1,000만원</div><div class="bar" style="height:100%"></div><div class="yr">지금</div></div>
-        <div class="col"><div class="amt">820만원</div><div class="bar" style="height:82%"></div><div class="yr">10년 뒤</div></div>
-        <div class="col"><div class="amt">673만원</div><div class="bar" style="height:67.3%"></div><div class="yr">20년 뒤</div></div>
-        <div class="col"><div class="amt">552만원</div><div class="bar" style="height:55.2%"></div><div class="yr">30년 뒤</div></div>
-      </div>
-      <p style="font-size:14px;color:var(--ink-3);margin-top:12px">물가 연 2% 가정 시 현재 가치로 환산한 구매력이에요. 30년이면 거의 <b style="color:var(--red)">반토막</b>이에요.</p>
+      <div class="mlegend"><span><i class="dash"></i>통장에 찍힌 숫자</span><span><i style="background:var(--red)"></i>실제 구매력 (물가 2% 반영)</span></div>
+      <svg id="meltChart" viewBox="0 0 640 330" width="100%" role="img" aria-label="1,000만원을 은행에 30년 두었을 때 통장 금액과 실제 구매력 변화 선그래프"></svg>
+      <p style="font-size:14px;color:var(--ink-3);margin-top:12px">통장 숫자는 30년 뒤 약 1,030만원으로 거의 그대로지만, 실제로 살 수 있는 건 <b style="color:var(--red)">552만원어치</b>. 거의 반토막이에요.</p>
     </div>
     <div class="grid2 narrow" style="margin-top:20px">
       <div class="card icard"><div class="e">🏦</div><h3>30년간 매달 20만원 저축</h3><div class="big">약 7,309만원</div><p>연 0.1% 통장에 모은 금액</p></div>
@@ -604,6 +605,34 @@ var CTA_URL = "#";
   h+='<text x="'+(x(30)-12)+'" y="'+(y(last.v)+5)+'" font-size="15" font-weight="800" fill="#3b3ff5" text-anchor="end">약 5.2억</text>';
   var p15=s[15]; h+='<text x="'+x(15)+'" y="'+(y(p15.v)-12)+'" font-size="12" fill="#4b4f5c" text-anchor="middle">45세 약 '+(p15.v/10000).toFixed(1)+'억</text>';
   svg.innerHTML=h; }
+
+
+  // bank melt line chart
+  (function(){
+    var el=document.getElementById('meltChart'); if(!el) return;
+    var k=Math.min(1.9,Math.max(1,640/(el.clientWidth||640)));
+    el.setAttribute('viewBox','0 0 640 '+(k>1.3?440:330));
+    var W=640,H=k>1.3?440:330,L=20,R=20,T=40,B=24+20*k, lo=400, hi=1100;
+    function X(y){return L+(W-L-R)*y/30} function Y(v){return T+(H-T-B)*(1-(v-lo)/(hi-lo))}
+    var real=[],nom=[];
+    for(var y=0;y<=30;y++){ real.push([X(y),Y(1000/Math.pow(1.02,y))]); nom.push([X(y),Y(1000*Math.pow(1.001,y))]); }
+    function line(pts){return 'M'+pts.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1)}).join(' L')}
+    var g='<defs><linearGradient id="mg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0506e" stop-opacity=".18"/><stop offset="1" stop-color="#f0506e" stop-opacity="0"/></linearGradient></defs>';
+    [0,10,20,30].forEach(function(y){ g+='<line x1="'+X(y)+'" x2="'+X(y)+'" y1="'+T+'" y2="'+(H-B)+'" stroke="#f0f0f6"/><text x="'+X(y)+'" y="'+(H-10)+'" font-size="'+(16*k).toFixed(0)+'" font-weight="600" fill="#8c909c" text-anchor="'+(y===0?'start':y===30?'end':'middle')+'">'+(y===0?'지금':y+'년 뒤')+'</text>'; });
+    // gap area between lines
+    g+='<path d="'+line(nom)+' L'+real.slice().reverse().map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1)}).join(' L')+'Z" fill="url(#mg)"/>';
+    g+='<path d="'+line(nom)+'" fill="none" stroke="#9aa0ad" stroke-width="2.5" stroke-dasharray="7 6"/>';
+    g+='<path d="'+line(real)+'" fill="none" stroke="#f0506e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>';
+    var pts=[[0,'1,000만원'],[10,'820만원'],[20,'673만원'],[30,'552만원']];
+    pts.forEach(function(d){ var y=d[0], px=X(y), py=Y(1000/Math.pow(1.02,y)), anc=y===0?'start':y===30?'end':'middle';
+      g+='<circle cx="'+px+'" cy="'+py+'" r="7" fill="#fff" stroke="#f0506e" stroke-width="3.5"/>';
+      g+='<text x="'+(y===0?px-2:y===30?px+2:px)+'" y="'+(py+20+16*k)+'" font-size="'+((y===30?22:18)*k).toFixed(0)+'" font-weight="800" fill="'+(y===0?'#111318':'#f0506e')+'" text-anchor="'+anc+'">'+d[1]+'</text>'; });
+    var ny=Y(1000*Math.pow(1.001,30));
+    g+='<text x="'+X(30)+'" y="'+(ny-12)+'" font-size="'+(15*k).toFixed(0)+'" font-weight="700" fill="#8c909c" text-anchor="end">통장 약 1,030만원</text>';
+    var my=(Y(1000*Math.pow(1.001,21))+Y(1000/Math.pow(1.02,21)))/2;
+    g+='<text x="'+X(21)+'" y="'+(my+6)+'" font-size="'+(16*k).toFixed(0)+'" font-weight="800" fill="#f0506e" text-anchor="middle">차이 −478만원</text>';
+    el.innerHTML=g;
+  })();
 
   // calculator
   var $=function(id){return document.getElementById(id)}, cr=0.165;
