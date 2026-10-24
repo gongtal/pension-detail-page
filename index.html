@@ -461,6 +461,32 @@ p,.need-sub,.facts-src,li{text-wrap:pretty}
   .src-fold.open{display:block}
   .src-fold:not(.open)::before{content:"ⓘ ";}
 }
+/* Timeline */
+.timeline{margin-top:20px;padding:28px 28px 12px}
+.tl-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.tl-head b{font-size:20px;font-weight:800}
+.tl-head span{font-size:12px;color:var(--ink-3);display:flex;align-items:center;gap:6px}
+.tl-head i{display:inline-block;width:12px;height:8px;border-radius:3px}
+.tl-head i.p{background:#9ea1d8}.tl-head i.v{background:var(--blue);margin-left:6px}
+.timeline ol{list-style:none;margin:0;padding:0}
+.tl{display:grid;grid-template-columns:64px 1fr;gap:14px;position:relative;padding-bottom:22px}
+.tl:before{content:"";position:absolute;left:31px;top:44px;bottom:0;width:2px;background:#e6e7f5}
+.tl:last-child:before{display:none}
+.tl-age{width:64px;height:44px;border-radius:14px;background:#f2f2fb;color:var(--ink);font-weight:900;font-size:22px;display:grid;place-items:center;grid-auto-flow:column;align-content:center;justify-content:center;letter-spacing:-.03em;position:relative;z-index:1}
+.tl-age small{font-size:12px;font-weight:700;margin-left:1px;color:var(--ink-3)}
+.tl.hot .tl-age{background:var(--blue-soft);color:var(--blue)}
+.tl.goal .tl-age{background:var(--blue);color:#fff}.tl.goal .tl-age small{color:#fff}
+.tl-top{display:flex;align-items:center;gap:8px}
+.tl-tag{font-size:12px;font-weight:800;color:var(--blue)}
+.tl-x{font-size:12px;font-weight:800;color:#fff;background:var(--blue);border-radius:99px;padding:1px 8px;margin-left:auto}
+.tl h4{font-size:18px;font-weight:800;letter-spacing:-.02em;margin:2px 0 2px;line-height:1.35}
+.tl p{font-size:14px;color:var(--ink-2);line-height:1.6;margin:0}
+.tl p b{color:var(--ink)}
+.tl.goal h4{color:var(--blue)}
+.tl-bar{height:8px;background:#f2f2f7;border-radius:99px;margin-top:10px;overflow:hidden}
+.tl-bar i{display:block;height:100%;background:var(--blue);border-radius:99px;min-width:10px;overflow:hidden}
+.tl-bar u{display:block;height:100%;background:#9ea1d8}
+@media (max-width:560px){.timeline{padding:22px 18px 6px}.tl{grid-template-columns:52px 1fr;gap:12px;padding-bottom:18px}.tl:before{left:25px}.tl-age{width:52px;height:40px;font-size:19px}.tl h4{font-size:16px}.tl p{font-size:13.5px}}
 </style>
 </head>
 <body>
@@ -620,6 +646,19 @@ p,.need-sub,.facts-src,li{text-wrap:pretty}
       <svg id="roadChart" viewBox="0 0 640 380" width="100%" role="img" aria-label="30세부터 60세까지 매달 20만원 연 10% 투자 시 평가금액과 원금 선그래프"></svg>
       <div class="road-legend"><span><i class="dash" style="background:repeating-linear-gradient(90deg,#9ea1d8 0 5px,transparent 5px 9px);height:4px;width:18px;vertical-align:3px"></i>내가 넣은 원금(환급 포함)</span><span><i style="background:var(--blue);height:4px;width:18px;vertical-align:3px"></i>평가금액 (연 10% 복리)</span></div>
       <p data-k="how-4" class="mhide" style="font-size:13px;color:var(--ink-3);margin-top:12px;text-align:center">마지막 15년에 전체 자산의 80% 이상이 만들어져요. 월복리 단순 계산이라 본문 수치(5억 1,723만원)와 소폭 차이가 있어요.</p>
+    </div>
+    <div class="card narrow timeline">
+      <div class="tl-head"><b>📍 나이별 로드맵</b><span><i class="p"></i>넣은 돈 <i class="v"></i>불어난 돈</span></div>
+      <ol>
+      <li class="tl"><div class="tl-age">30<small>세</small></div><div class="tl-body"><div class="tl-top"><span class="tl-tag">시작</span></div><h4 data-k="how-t1">계좌 열고 자동이체 ON</h4><p data-k="how-t2">증권사 앱에서 연금저축펀드 개설 → 매달 20만원 S&P500 ETF 자동 매수</p></div></li>
+      <li class="tl"><div class="tl-age">35<small>세</small></div><div class="tl-body"><div class="tl-top"><span class="tl-tag">버티는 구간</span><span class="tl-x">1.3배</span></div><h4 data-k="how-t3">아직은 티가 안 나요</h4><p data-k="how-t4">5년간 넣은 돈 1,398만원 → <b>1,793만원</b>. 수익보다 습관이 중요한 때</p><div class="tl-bar"><i style="width:3.4%"><u style="width:78.0%"></u></i></div></div></li>
+      <li class="tl hot"><div class="tl-age">38<small>세</small></div><div class="tl-body"><div class="tl-top"><span class="tl-tag">첫 역전</span><span class="tl-x">1.5배</span></div><h4 data-k="how-t5">돈이 나보다 일을 더 해요</h4><p data-k="how-t6">이 해 처음으로 <b>1년 수익(305만원)</b>이 1년 납입액(280만원)을 넘어서요</p><div class="tl-bar"><i style="width:6.5%"><u style="width:66.1%"></u></i></div></div></li>
+      <li class="tl"><div class="tl-age">40<small>세</small></div><div class="tl-body"><div class="tl-top"><span class="tl-tag">가속 시작</span><span class="tl-x">1.7배</span></div><h4 data-k="how-t7">10년 만에 원금의 1.7배</h4><p data-k="how-t8">넣은 돈 2,796만원 → <b>4,742만원</b></p><div class="tl-bar"><i style="width:9.1%"><u style="width:59.0%"></u></i></div></div></li>
+      <li class="tl hot"><div class="tl-age">46<small>세</small></div><div class="tl-body"><div class="tl-top"><span class="tl-tag">1억 돌파</span><span class="tl-x">2.4배</span></div><h4 data-k="how-t9">💯 첫 1억원 달성</h4><p data-k="how-t10">넣은 돈 4,474만원 → <b>1억 891만원</b>. 이제 1년에 1,000만원 넘게 불어나요</p><div class="tl-bar"><i style="width:20.8%"><u style="width:41.1%"></u></i></div></div></li>
+      <li class="tl"><div class="tl-age">50<small>세</small></div><div class="tl-body"><div class="tl-top"><span class="tl-tag">눈덩이</span><span class="tl-x">3.1배</span></div><h4 data-k="how-t11">1년에 1,650만원씩 불어나요</h4><p data-k="how-t12">넣은 돈 5,592만원 → <b>1억 7,581만원</b></p><div class="tl-bar"><i style="width:33.6%"><u style="width:31.8%"></u></i></div></div></li>
+      <li class="tl"><div class="tl-age">55<small>세</small></div><div class="tl-body"><div class="tl-top"><span class="tl-tag">수령 가능</span><span class="tl-x">4.4배</span></div><h4 data-k="how-t13">받을 수 있지만, 5년 더 굴려요</h4><p data-k="how-t14">55세부터 연금 수령 가능. 넣은 돈 6,990만원 → <b>3억 718만원</b></p><div class="tl-bar"><i style="width:58.7%"><u style="width:22.8%"></u></i></div></div></li>
+      <li class="tl goal"><div class="tl-age">60<small>세</small></div><div class="tl-body"><div class="tl-top"><span class="tl-tag">월급 시작</span><span class="tl-x">6.2배</span></div><h4 data-k="how-t15">🎉 매달 100만원 평생 수령</h4><p data-k="how-t16">넣은 돈 8,388만원 → <b>약 5.2억원</b>. 연 2.3%만 꺼내 써서 원금이 거의 줄지 않아요</p><div class="tl-bar"><i style="width:100.0%"><u style="width:16.0%"></u></i></div></div></li>
+      </ol>
     </div>
     <div class="result">
       <div class="k">60세 예상 평가금액 (연 10% 가정)</div>
