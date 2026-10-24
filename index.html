@@ -415,6 +415,28 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
 .ib b{font-size:clamp(30px,6vw,44px);font-weight:900;letter-spacing:-.03em;line-height:1.15}
 .ib.up{background:#fff4e0;color:#c77700}
 .ib.down{background:#fff0f3;color:var(--red)}
+
+.inc-steps{display:grid;gap:8px;margin-top:14px}
+.inc-steps div{background:#f7f7fb;border-radius:12px;padding:11px 14px;font-size:15px;font-weight:700;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.inc-steps b{color:var(--blue)}
+.inc-steps em{font-style:normal;margin-left:auto;color:var(--blue);font-weight:800}
+.inc-steps .r{background:#fff0f3}.inc-steps .r b,.inc-steps .r em{color:var(--red)}
+
+.care{margin-top:28px}
+.care-head{text-align:center}
+.care-head p{font-size:17px;color:var(--ink-2);margin-top:12px}
+.care-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+.cg{background:#f7f7fb;border-radius:20px;padding:20px;display:flex;flex-direction:column}
+.cg.main{grid-column:1/-1;background:linear-gradient(135deg,#f0506e,#ff7a8f);color:#fff;justify-content:center}
+.cg span{font-size:13px;font-weight:700;color:var(--ink-3)}
+.cg.main span,.cg.main em{color:#ffe3e8}
+.cg b{font-size:clamp(22px,3.4vw,30px);font-weight:900;letter-spacing:-.03em;color:var(--red);margin:4px 0;white-space:nowrap}
+.cg.main b{font-size:clamp(40px,7vw,60px);color:#fff}
+.cg em{font-style:normal;font-size:13px;color:var(--ink-2)}
+.care-c{text-align:center;font-size:clamp(24px,4.6vw,38px);font-weight:800;letter-spacing:-.04em;line-height:1.3;margin-top:44px}
+@media (max-width:700px){.care-grid{grid-template-columns:1fr}.cg{flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:4px 10px}.cg span{flex:1 1 100%}.cg.main{flex-direction:column}}
+.x62{display:inline-block;background:#fff;color:var(--blue);font-weight:800;font-size:clamp(20px,3.6vw,28px);padding:10px 22px;border-radius:999px;margin-top:10px;box-shadow:0 10px 24px -12px rgba(0,0,0,.4)}
+.x62 b{color:#f0506e;font-size:1.25em;font-weight:900}
 </style>
 </head>
 <body>
@@ -445,10 +467,11 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
       <h2 data-k="reality-2">아래 내용을 이해하신 분은<br><span class="blue">천운</span>입니다.</h2>
     </div>
     <div class="need" id="incCard" style="margin-bottom:20px">
-      <div class="need-q">30대부터 보면 — <b>버는 돈은 40대가 정점</b>, 쓰는 돈은 평생</div>
+      <div class="need-q">나이대별 <b>한 달 평균 소득</b> vs <b>필요한 생활비</b></div>
       <div class="inc-head"><span class="blue">월 소득은 줄고</span>, <span style="color:var(--red)">생활비는 그대로</span></div>
       <svg id="incChart" viewBox="0 0 640 320" width="100%" role="img" aria-label="연령대별 월평균 소득과 필요 생활비 비교 선그래프: 30대 397만원, 40대 469만원, 50대 445만원, 60대 293만원, 70대 이상 165만원, 필요 생활비 197.6만원"></svg>
-      <div class="need-legend"><span><i style="background:var(--blue)"></i>월평균 소득 (일하는 사람 기준)</span><span><i class="g"></i>은퇴하면 소득 0원</span><span><i></i>필요 생활비 월 197.6만원 (1인)</span></div>
+      <div class="inc-steps"><div><b>①</b> 40대에 가장 많이 벌어요 <em>월 469만원</em></div><div><b>②</b> 60대부터 소득이 뚝 떨어져요 <em>월 293만원</em></div><div class="r"><b>③</b> 70대엔 생활비보다 적어요 <em>월 165만원 &lt; 198만원</em></div></div>
+      <div class="need-legend"><span><i style="background:var(--blue)"></i>한 달 평균 소득 (일하는 사람 기준)</span><span><i class="g" style="background:repeating-linear-gradient(90deg,#f0506e 0 6px,transparent 6px 10px)"></i>1인 필요 생활비</span></div>
       <p data-k="reality-3" class="need-src">출처: 국가데이터처 「2024년 임금근로일자리 소득(보수) 결과」 연령대별 월평균(세전) · 국민연금연구원 「2024년 국민노후보장패널조사 제10차」 개인 적정 노후생활비</p>
     </div>
     <div class="sec-head" style="margin:72px 0 28px">
@@ -463,7 +486,22 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
       <div class="need-legend"><span><i></i>필요한 누적 생활비</span><span><i class="g"></i>소득 (60세 이후 0원)</span></div>
       <p data-k="reality-4" class="need-src">출처: 국민연금연구원 「2024년 국민노후보장패널조사 제10차」 적정 노후생활비(부부 월 298만원) 기준 단순 계산 · 물가상승 미반영</p>
     </div>
-    <p data-k="reality-7" class="intro-c" style="margin:56px 0 0"><span style="color:var(--red)">자식에 의존해서</span><br>사실 건가요?</p>
+    <p data-k="reality-7" class="intro-c" style="margin:72px 0 0">소득이 끊긴 후<br><span style="color:var(--red)">자식에 의존해서</span> 사실 건가요?</p>
+    <div class="care">
+      <div class="care-head"><span class="infl-tag" style="background:var(--red)">🏥 간병 지옥</span><p data-k="reality-9">아프기 시작하면, 부담은 고스란히 자녀에게 넘어가요.</p></div>
+      <div class="care-grid">
+        <div class="cg main"><span>한 달 간병비</span><b>370만원+</b><em>하루 12~15만원 · 월 500만원 넘는 경우도</em></div>
+        <div class="cg"><span>65세 이상 가구 월소득</span><b>224만원</b><em>간병비가 소득보다 많아요</em></div>
+        <div class="cg"><span>40·50대 자녀 가구라면</span><b>소득의 60%↑</b><em>월소득 588만원 기준</em></div>
+        <div class="cg"><span>2016→2023년 간병비</span><b>+50%</b><em>같은 기간 임금은 +28%</em></div>
+      </div>
+      <div class="news mini">
+        <div class="news-top"><span class="news-badge">📰 관련 기사</span><span class="news-meta">코메디닷컴 · 2024.03.06</span></div>
+        <h3 class="news-title">“한달 간병비 370만원”<br class="pc"> 폭탄은 떨어졌는데…</h3>
+        <p class="news-src">출처: 한국은행 「돌봄서비스 인력난 및 비용 부담 완화 방안」(2024.03) · 통계청 · <a href="https://kormedi.com/1669200/" target="_blank" rel="noopener">기사 보기</a></p>
+      </div>
+      <p class="care-c">내 노후가 준비되지 않으면,<br><span style="color:var(--red)">내 자녀의 노후까지</span> 무너집니다.</p>
+    </div>
   </div>
 </section>
 
@@ -504,7 +542,7 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
 <section id="problem">
   <div class="wrap">
     <div class="sec-head" style="margin:0 0 28px">
-      <h2 data-k="problem-6">지금 1,000만원,<br>은행에 두면 <span style="color:var(--red)">실제 가치는?</span> 🫠</h2>
+      <h2 data-k="problem-6">지금 1,000만원, 은행에 30년 두면<br><span style="color:var(--red)">실제 가치는 552만원</span></h2>
     </div>
     <div class="card narrow need" id="meltCard">
       <div class="infl-top">
@@ -517,6 +555,19 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
       <div class="mlegend"><span><i style="background:#f59f00"></i>물가 (같은 물건 값)</span><span><i class="dash"></i>통장에 찍힌 숫자</span><span><i style="background:var(--red)"></i>원화의 실제 가치 (구매력)</span></div>
       <svg id="meltChart" viewBox="0 0 640 330" width="100%" role="img" aria-label="1,000만원을 은행에 30년 두었을 때 통장 금액과 실제 구매력 변화 선그래프"></svg>
       <p data-k="problem-7" style="font-size:14px;color:var(--ink-3);margin-top:12px">물가가 매년 2%씩 오르면 지금 1,000만원짜리가 30년 뒤엔 <b style="color:#e08a00">1,811만원</b>. 통장 속 1,030만원으로 살 수 있는 건 지금 돈 <b style="color:var(--red)">552만원어치</b>뿐이에요.</p>
+    </div>
+    <div class="sec-head" style="margin:84px 0 28px">
+      <h2 data-k="problem-8">만 원으로 <span style="color:var(--red)">짜장면 한 그릇</span>도<br>못 먹는 시대가 옵니다 🍜</h2>
+    </div>
+    <div class="card narrow need" id="jjCard">
+      <div class="infl-badges" style="margin-top:0">
+        <div class="ib down" style="background:#f7f7fb;color:var(--ink)"><span style="color:var(--ink-3)">10년 새 짜장면 값</span><b>▲ 67%</b><span style="color:var(--ink-3);font-weight:600">4,500원 → 7,500원</span></div>
+        <div class="ib down"><span>지금 속도라면</span><b>2030년</b><span style="font-weight:600">1만원 돌파</span></div>
+      </div>
+      <svg id="jjChart" viewBox="0 0 640 340" width="100%" role="img" aria-label="서울 짜장면 평균 가격 추이와 전망: 2014년 4,500원, 2025년 7,500원, 연 5.1% 상승 시 2030년 1만원 돌파"></svg>
+      <div class="mlegend"><span><i style="background:var(--red)"></i>실제 평균 가격 (서울)</span><span><i class="dash" style="background:repeating-linear-gradient(90deg,#f0506e 0 5px,transparent 5px 9px)"></i>최근 10년 추세(연 5.1%) 유지 시</span></div>
+      <p data-k="problem-9" style="font-size:14px;color:var(--ink-3);margin-top:10px">10년 동안 <b style="color:var(--red)">67%</b> 올랐어요. 통장 속 만 원은 그대로인데, 짜장면 값은 매년 올라갑니다.</p>
+      <p class="facts-src">출처: 한국소비자원 가격정보포털 ‘참가격’ 서울 짜장면 평균 가격 (아시아경제, 2025.02.18 보도) · 2030년은 2014~2025년 연평균 상승률(약 5.1%)이 이어진다고 가정한 단순 전망이에요.</p>
     </div>
   </div>
 </section>
@@ -562,7 +613,7 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
     <div class="result">
       <div class="k">60세 예상 평가금액 (연 10% 가정)</div>
       <div class="v">약 5억 1,723만원</div>
-      <div class="s">넣은 돈의 <b>약 6.2배</b></div>
+      <div class="s"><span class="x62">넣은 돈의 <b>약 6.2배</b> 💰</span></div>
     </div>
   </div>
 </section>
@@ -726,9 +777,6 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
       <div class="card icard" style="border:2px solid var(--blue)"><div class="e">🌱</div><h3 data-k="bonus-4">30세 시작</h3><div class="big blue">월 20만원</div><p data-k="bonus-5">30년 적립</p></div>
       <div class="card icard"><div class="e">🌿</div><h3 data-k="bonus-6">40세 시작</h3><div class="big">월 약 60만원</div><p data-k="bonus-7">20년 적립</p></div>
       <div class="card icard"><div class="e">🍂</div><h3 data-k="bonus-8">50세 시작</h3><div class="big" style="color:var(--red)">월 약 221만원</div><p data-k="bonus-9">10년 적립</p></div>
-    </div>
-    <div class="sec-head" style="margin:56px 0 0">
-      <h2 data-k="bonus-10" style="font-size:clamp(24px,4.4vw,40px)">10년 늦으면 3배, 20년 늦으면 <span class="blue">11배</span>.<br>가장 싼 시작은 오늘이에요.</h2>
     </div>
   </div>
 </section>
@@ -902,37 +950,32 @@ var PP=(function(){
 
 
 
-  // income vs need chart (animated)
+  // income vs need chart (animated, simplified)
   (function(){
     var el=document.getElementById('incChart'), card=document.getElementById('incCard'); if(!el) return;
-    var k=Math.min(1.9,Math.max(1,640/(el.clientWidth||640))), H=k>1.3?440:320; el.setAttribute('viewBox','0 0 640 '+H);
-    var W=640,L=20,R=20,T=34+8*k,B=26+18*k, maxV=520;
-    function X(a){return L+(W-L-R)*(a-30)/70} function Y(v){return T+(H-T-B)*(1-v/maxV)}
+    var k=Math.min(1.9,Math.max(1,640/(el.clientWidth||640))), mob=k>1.3, H=mob?470:340; el.setAttribute('viewBox','0 0 640 '+H);
+    var W=640,L=mob?72:40,R=mob?72:40,T=50,B=40+12*k, maxV=540, NEED=197.6;
+    var data=[['30대',397],['40대',469],['50대',445],['60대',293],['70대+',165]];
+    function X(i){return L+(W-L-R)*i/(data.length-1)} function Y(v){return T+(H-T-B)*(1-v/maxV)}
     function f(n){return (n*k).toFixed(0)}
-    var inc=[[35,397],[45,469],[55,445],[65,293],[75,165]];
-    var g='<defs><linearGradient id="gapg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0506e" stop-opacity=".25"/><stop offset="1" stop-color="#f0506e" stop-opacity=".08"/></linearGradient></defs>';
-    var mob=k>1.3; [30,40,50,60,70,80,90,100].forEach(function(a){ g+='<line x1="'+X(a)+'" x2="'+X(a)+'" y1="'+T+'" y2="'+(H-B)+'" stroke="#f0f0f6"/>'; if(!mob||a===30||a===60||a===100) g+='<text x="'+X(a)+'" y="'+(H-6)+'" font-size="'+f(14)+'" font-weight="700" fill="#8c909c" text-anchor="'+(a===30?'start':a===100?'end':'middle')+'">'+a+'세</text>'; });
-    // retirement marker
-    g+='<line x1="'+X(60)+'" x2="'+X(60)+'" y1="'+T+'" y2="'+(H-B)+'" stroke="#111318" stroke-width="1.5" stroke-dasharray="4 4"/><text class="lb" style="animation-delay:1.4s" x="'+(X(60)+6)+'" y="'+(T+12)+'" font-size="'+f(12)+'" font-weight="800" fill="#111318">은퇴 60세</text>';
-    // gap area (need above zero after 60)
-    g+='<rect class="ar" style="animation-delay:1.6s" x="'+X(60)+'" y="'+Y(197.6)+'" width="'+(X(100)-X(60))+'" height="'+(Y(0)-Y(197.6))+'" fill="url(#gapg)"/>';
-    // income path (smooth through points, start at 30)
-    var P=inc.map(function(p){return [X(p[0]),Y(p[1])]});
-    var d='M'+P[0][0]+','+P[0][1]; for(var i=1;i<P.length;i++){ var cx=(P[i-1][0]+P[i][0])/2; d+=' C'+cx+','+P[i-1][1]+' '+cx+','+P[i][1]+' '+P[i][0]+','+P[i][1]; }
-    var tmp=document.createElementNS('http://www.w3.org/2000/svg','path'); tmp.setAttribute('d',d); el.appendChild(tmp); var len=tmp.getTotalLength(); el.removeChild(tmp);
-    g+='<path class="ln" style="--len:'+len.toFixed(0)+'" d="'+d+'" fill="none" stroke="#3b3ff5" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>';
-    g+='<path class="ar" style="animation-delay:2.2s" d="M'+X(75)+','+Y(165)+' L'+X(100)+','+Y(165)+'" stroke="#3b3ff5" stroke-width="3" stroke-dasharray="3 7" stroke-linecap="round" fill="none"/>';
-    // retired: drop to 0
-    g+='<path class="ar" style="animation-delay:1.8s" d="M'+X(60)+','+Y(0)+' L'+X(100)+','+Y(0)+'" stroke="#9ea2ad" stroke-width="3" stroke-dasharray="7 6" fill="none"/>';
+    var g='<defs><linearGradient id="ig" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b3ff5" stop-opacity=".18"/><stop offset="1" stop-color="#3b3ff5" stop-opacity="0"/></linearGradient></defs>';
+    data.forEach(function(d,i){ g+='<text x="'+X(i)+'" y="'+(H-10)+'" font-size="'+f(15)+'" font-weight="800" fill="#4b4f5c" text-anchor="middle">'+d[0]+'</text>'; });
+    var P=data.map(function(d,i){return [X(i),Y(d[1])]});
+    var dpath='M'+P[0][0]+','+P[0][1]; for(var i=1;i<P.length;i++){ var cx=(P[i-1][0]+P[i][0])/2; dpath+=' C'+cx+','+P[i-1][1]+' '+cx+','+P[i][1]+' '+P[i][0]+','+P[i][1]; }
+    var tmp=document.createElementNS('http://www.w3.org/2000/svg','path'); tmp.setAttribute('d',dpath); el.appendChild(tmp); var len=tmp.getTotalLength(); el.removeChild(tmp);
+    g+='<path class="ar" d="'+dpath+' L'+X(4)+','+Y(0)+' L'+X(0)+','+Y(0)+'Z" fill="url(#ig)"/>';
     // need line
-    var nl=X(100)-X(60);
-    g+='<line class="ln" style="--len:'+nl.toFixed(0)+';animation-delay:1.5s" x1="'+X(60)+'" y1="'+Y(197.6)+'" x2="'+X(100)+'" y2="'+Y(197.6)+'" stroke="#f0506e" stroke-width="5" stroke-linecap="round"/>';
-    inc.forEach(function(p,i){ var x=X(p[0]),y=Y(p[1]),dl=(0.35*(i+1)).toFixed(2)+'s', top=p[1]===469, show=!mob||top||p[1]===165||p[1]===293;
-      g+='<circle class="pt" style="animation-delay:'+dl+'" cx="'+x+'" cy="'+y+'" r="'+(top?8:6)+'" fill="#fff" stroke="#3b3ff5" stroke-width="3.5"/>';
-      if(show) g+='<text class="lb" style="animation-delay:'+dl+'" x="'+(p[1]===293?x+10:x)+'" y="'+(p[1]===165?y+18+8*k:y-14)+'" font-size="'+f(top?17:14)+'" font-weight="800" fill="#3b3ff5" text-anchor="'+(p[1]===293?'start':'middle')+'">'+p[1]+'만'+(top?' 정점':'')+'</text>'; });
-    g+='<text class="lb" style="animation-delay:2.4s" x="'+(X(100)-2)+'" y="'+(Y(197.6)-12)+'" font-size="'+f(14)+'" font-weight="800" fill="#f0506e" text-anchor="end">필요 생활비 197.6만</text>';
-    g+='<text class="lb" style="animation-delay:2.6s" x="'+X(mob?86:88)+'" y="'+(Y(197.6)+(Y(0)-Y(197.6))*(mob?0.85:0.62))+'" font-size="'+f(15)+'" font-weight="900" fill="#f0506e" text-anchor="middle">은퇴 후 매달 부족</text>';
-    if(!mob) g+='<text class="lb" style="animation-delay:2.2s" x="'+(X(100)-2)+'" y="'+(Y(0)-8)+'" font-size="'+f(12)+'" font-weight="700" fill="#8c909c" text-anchor="end">은퇴 시 소득 0원</text>';
+    g+='<line class="ln" style="--len:'+(W-L-R+40)+';animation-delay:1.4s" x1="'+(L-20)+'" y1="'+Y(NEED)+'" x2="'+(W-R+20)+'" y2="'+Y(NEED)+'" stroke="#f0506e" stroke-width="4" stroke-dasharray="10 6" stroke-linecap="round"/>';
+    g+='<text class="lb" style="animation-delay:1.8s" x="'+(L-16)+'" y="'+(Y(NEED)-10)+'" font-size="'+f(14)+'" font-weight="900" fill="#f0506e">필요 생활비 월 198만원</text>';
+    // income line
+    g+='<path class="ln" style="--len:'+len.toFixed(0)+'" d="'+dpath+'" fill="none" stroke="#3b3ff5" stroke-width="5.5" stroke-linecap="round"/>';
+    data.forEach(function(d,i){ var x=X(i), y=Y(d[1]), dl=(0.35*(i+1)).toFixed(2)+'s', low=d[1]<NEED, top=i===1;
+      g+='<circle class="pt" style="animation-delay:'+dl+'" cx="'+x+'" cy="'+y+'" r="'+(top||low?9:7)+'" fill="'+(low?'#f0506e':'#fff')+'" stroke="'+(low?'#f0506e':'#3b3ff5')+'" stroke-width="3.5"/>';
+      g+='<text class="lb" style="animation-delay:'+dl+'" x="'+x+'" y="'+(low?y+30*k/1.1:y-16)+'" font-size="'+f(top||low?18:15)+'" font-weight="900" fill="'+(low?'#f0506e':'#3b3ff5')+'" text-anchor="middle">'+d[1]+'만원</text>'; });
+    // callouts
+    function bubble(x,y,txt,bg,dl){ var w=(txt.length*13+24)*k*0.92; g+='<g class="lb" style="animation-delay:'+dl+'"><rect x="'+(x-w/2)+'" y="'+(y-26*k)+'" width="'+w+'" height="'+(28*k)+'" rx="'+(14*k)+'" fill="'+bg+'"/><text x="'+x+'" y="'+(y-7*k)+'" font-size="'+f(13)+'" font-weight="800" fill="#fff" text-anchor="middle">'+txt+'</text></g>'; }
+    bubble(X(1),Y(469)-44*k,'💪 가장 많이 버는 때','#3b3ff5','2s');
+    bubble(X(4)-(mob?80:40),Y(165)+66*k,'😰 생활비보다 적어요','#f0506e','2.4s');
     el.innerHTML=g;
     function go(){ card.classList.add('go'); }
     if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){ go(); return; }
@@ -1067,6 +1110,40 @@ var PP=(function(){
     g+='<text class="lb" style="animation-delay:2s" x="'+X(30)+'" y="'+(ny-10)+'" font-size="'+f(13)+'" font-weight="700" fill="#8c909c" text-anchor="end">통장 숫자 1,030만원</text>';
     if(!mob) g+='<g class="lb" style="animation-delay:2.2s"><rect x="'+(X(24)-74*k)+'" y="'+(Y(1330)-15*k)+'" width="'+(148*k)+'" height="'+(30*k)+'" rx="'+(15*k)+'" fill="#f59f00"/><text x="'+X(24)+'" y="'+(Y(1330)+6*k)+'" font-size="'+f(15)+'" font-weight="900" fill="#fff" text-anchor="middle">물가 ▲ 81%</text></g>';
     if(!mob) g+='<g class="lb" style="animation-delay:2.4s"><rect x="'+(X(24)-74*k)+'" y="'+(Y(835)-15*k)+'" width="'+(148*k)+'" height="'+(30*k)+'" rx="'+(15*k)+'" fill="#f0506e"/><text x="'+X(24)+'" y="'+(Y(835)+6*k)+'" font-size="'+f(15)+'" font-weight="900" fill="#fff" text-anchor="middle">원화 가치 ▼ 45%</text></g>';
+    el.innerHTML=g;
+    function go(){ card.classList.add('go'); }
+    if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){ go(); return; }
+    if('IntersectionObserver' in window){ var io=new IntersectionObserver(function(es){ if(es[0].isIntersecting){ go(); io.disconnect(); } },{threshold:.35}); io.observe(card); setTimeout(function(){ if(card.getBoundingClientRect().top<innerHeight) go(); },1500); } else go();
+  })();
+
+
+  // jajangmyeon price chart (animated)
+  (function(){
+    var el=document.getElementById('jjChart'), card=document.getElementById('jjCard'); if(!el) return;
+    var k=Math.min(1.9,Math.max(1,640/(el.clientWidth||640))), mob=k>1.3, H=mob?460:340; el.setAttribute('viewBox','0 0 640 '+H);
+    var W=640,L=20,R=24,T=40,B=24+18*k, x0=2014.5, x1=2031, lo=3500, hi=11000;
+    function X(t){return L+(W-L-R)*(t-x0)/(x1-x0)} function Y(v){return T+(H-T-B)*(1-(v-lo)/(hi-lo))}
+    function f(n){return (n*k).toFixed(0)}
+    var real=[[2014.8,4500,'4,500원'],[2019.8,5000,'5천원 돌파'],[2022.3,6000,'6천원 돌파'],[2023.7,7000,'7천원 돌파'],[2025.05,7500,'7,500원']];
+    var r=Math.pow(7500/4500,1/10.25), proj=[]; for(var t=2025.05;t<=2030.9;t+=0.25) proj.push([X(t),Y(7500*Math.pow(r,t-2025.05))]);
+    function line(pts){return 'M'+pts.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1)}).join(' L')}
+    function plen(pts){ var l=0; for(var i=1;i<pts.length;i++) l+=Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]); return Math.ceil(l)+2; }
+    var g='';
+    [2015,2020,2025,2030].forEach(function(y){ g+='<line x1="'+X(y)+'" x2="'+X(y)+'" y1="'+T+'" y2="'+(H-B)+'" stroke="#f0f0f6"/><text x="'+X(y)+'" y="'+(H-8)+'" font-size="'+f(14)+'" font-weight="700" fill="#8c909c" text-anchor="middle">'+y+'</text>'; });
+    // 10,000 line
+    g+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(10000)+'" y2="'+Y(10000)+'" stroke="#111318" stroke-width="2" stroke-dasharray="6 5"/>';
+    g+='<text x="'+(L+4)+'" y="'+(Y(10000)-10)+'" font-size="'+f(15)+'" font-weight="900" fill="#111318">💵 만 원</text>';
+    var rp=real.map(function(p){return [X(p[0]),Y(p[1])]});
+    g+='<path class="ar" d="'+line(rp)+' L'+X(2025.05)+','+Y(lo)+' L'+X(2014.8)+','+Y(lo)+'Z" fill="rgba(240,80,110,.10)"/>';
+    g+='<path class="ln" style="--len:'+plen(rp)+'" d="'+line(rp)+'" fill="none" stroke="#f0506e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>';
+    g+='<path class="ar" style="animation-delay:2.2s" d="'+line(proj)+'" fill="none" stroke="#f0506e" stroke-width="4" stroke-dasharray="8 7" stroke-linecap="round"/>';
+    real.forEach(function(p,i){ var x=X(p[0]),y=Y(p[1]),dl=(0.45*i)+'s', last=i===4, show=!mob||i===0||i===4;
+      g+='<circle class="pt" style="animation-delay:'+dl+'" cx="'+x+'" cy="'+y+'" r="'+(last?8:6)+'" fill="'+(last?'#f0506e':'#fff')+'" stroke="#f0506e" stroke-width="3.5"/>';
+      if(show) g+='<text class="lb" style="animation-delay:'+dl+'" x="'+(i===0?x-4:i===3?x-10:x)+'" y="'+(i===3?y-4:y-14)+'" font-size="'+f(last?17:14)+'" font-weight="800" fill="'+(last?'#f0506e':'#4b4f5c')+'" text-anchor="'+(i===0?'start':i===3?'end':'middle')+'">'+p[2]+'</text>'; });
+    // crossing point ~2030.8
+    var cx=X(2030.8), cy=Y(10000);
+    g+='<circle class="pt" style="animation-delay:2.8s" cx="'+cx+'" cy="'+cy+'" r="11" fill="#f0506e" stroke="#fff" stroke-width="3"/>';
+    g+='<g class="lb" style="animation-delay:3s"><rect x="'+(cx-118*k)+'" y="'+(cy-50*k)+'" width="'+(112*k)+'" height="'+(30*k)+'" rx="'+(15*k)+'" fill="#f0506e"/><text x="'+(cx-62*k)+'" y="'+(cy-29*k)+'" font-size="'+f(14)+'" font-weight="900" fill="#fff" text-anchor="middle">2030년 1만원↑</text></g>';
     el.innerHTML=g;
     function go(){ card.classList.add('go'); }
     if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){ go(); return; }
