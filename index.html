@@ -380,6 +380,7 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
 @media (max-width:700px){.real-stats{grid-template-columns:1fr 1fr}.real-stats>div.main{grid-column:1/-1}}
 
 /* Need chart */
+.inc-head{font-size:clamp(26px,5vw,40px);font-weight:900;letter-spacing:-.04em;line-height:1.25;margin-top:6px}
 .need{background:#fff;color:var(--ink);border-radius:26px;padding:30px 28px 22px;box-shadow:var(--shadow);border:1px solid #f1f1f7}
 .need-q{font-size:clamp(17px,2.6vw,21px);font-weight:700;color:var(--ink-2)}
 .need-q b{color:var(--ink)}
@@ -388,22 +389,22 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
 .need-unit{font-size:clamp(26px,5vw,40px);font-weight:800;margin-left:6px;color:var(--red)}
 .need-sub{font-size:15px;color:var(--ink-3)}
 .need-sub b{color:var(--ink)}
-#needChart{margin-top:18px;overflow:visible}
+.need svg{margin-top:18px;overflow:visible}
 .need-legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--ink-2);margin-top:6px}
 .need-legend i{display:inline-block;width:18px;height:4px;border-radius:2px;background:var(--red);margin-right:6px;vertical-align:3px}
 .need-legend i.g{background:repeating-linear-gradient(90deg,#a3a7b3 0 5px,transparent 5px 9px)}
 .need-src{font-size:11px;color:var(--ink-3);margin-top:10px}
-#needChart .ln{stroke-dasharray:var(--len);stroke-dashoffset:var(--len)}
-#needChart .ar{opacity:0}
-#needChart .pt,#needChart .lb{opacity:0;transform-box:fill-box;transform-origin:center}
-.need.go #needChart .ln{animation:draw 2.4s cubic-bezier(.4,0,.2,1) forwards}
-.need.go #needChart .ar{animation:fade 1.2s .6s forwards}
-.need.go #needChart .pt{animation:pop .4s forwards}
-.need.go #needChart .lb{animation:fade .5s forwards}
+.need svg .ln{stroke-dasharray:var(--len);stroke-dashoffset:var(--len)}
+.need svg .ar{opacity:0}
+.need svg .pt,.need svg .lb{opacity:0;transform-box:fill-box;transform-origin:center}
+.need.go svg .ln{animation:draw 2.4s cubic-bezier(.4,0,.2,1) forwards}
+.need.go svg .ar{animation:fade 1.2s .6s forwards}
+.need.go svg .pt{animation:pop .4s forwards}
+.need.go svg .lb{animation:fade .5s forwards}
 @keyframes draw{to{stroke-dashoffset:0}}
 @keyframes fade{to{opacity:1}}
 @keyframes pop{0%{opacity:0;transform:scale(.2)}70%{opacity:1;transform:scale(1.3)}100%{opacity:1;transform:scale(1)}}
-@media (prefers-reduced-motion:reduce){#needChart .ln{stroke-dashoffset:0}#needChart .ar,#needChart .pt,#needChart .lb{opacity:1}}
+@media (prefers-reduced-motion:reduce){.need svg .ln{stroke-dashoffset:0}.need svg .ar,.need svg .pt,.need svg .lb{opacity:1}}
 @media (max-width:560px){.need{padding:24px 18px 18px;border-radius:20px}}
 </style>
 </head>
@@ -433,6 +434,13 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
     <div class="sec-head" style="margin-bottom:28px">
       <span class="tag" style="color:var(--red)">⚠️ 지금 한국의 현실</span>
       <h2>노후 준비를 하지 않은<br>세대의 <span style="color:var(--red)">최후</span></h2>
+    </div>
+    <div class="need" id="incCard" style="margin-bottom:20px">
+      <div class="need-q">30대부터 보면 — <b>버는 돈은 40대가 정점</b>, 쓰는 돈은 평생</div>
+      <div class="inc-head"><span class="blue">월 소득은 줄고</span>, <span style="color:var(--red)">생활비는 그대로</span></div>
+      <svg id="incChart" viewBox="0 0 640 320" width="100%" role="img" aria-label="연령대별 월평균 소득과 필요 생활비 비교 선그래프: 30대 397만원, 40대 469만원, 50대 445만원, 60대 293만원, 70대 이상 165만원, 필요 생활비 197.6만원"></svg>
+      <div class="need-legend"><span><i style="background:var(--blue)"></i>월평균 소득 (일하는 사람 기준)</span><span><i class="g"></i>은퇴하면 소득 0원</span><span><i></i>필요 생활비 월 197.6만원 (1인)</span></div>
+      <p class="need-src">출처: 국가데이터처 「2024년 임금근로일자리 소득(보수) 결과」 연령대별 월평균(세전) · 국민연금연구원 「2024년 국민노후보장패널조사 제10차」 개인 적정 노후생활비</p>
     </div>
     <div class="need" id="needCard">
       <div class="need-top">
@@ -885,6 +893,44 @@ var SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbxuNwXNARo1Gn_76vJ
 
 
 
+
+
+  // income vs need chart (animated)
+  (function(){
+    var el=document.getElementById('incChart'), card=document.getElementById('incCard'); if(!el) return;
+    var k=Math.min(1.9,Math.max(1,640/(el.clientWidth||640))), H=k>1.3?440:320; el.setAttribute('viewBox','0 0 640 '+H);
+    var W=640,L=20,R=20,T=34+8*k,B=26+18*k, maxV=520;
+    function X(a){return L+(W-L-R)*(a-30)/70} function Y(v){return T+(H-T-B)*(1-v/maxV)}
+    function f(n){return (n*k).toFixed(0)}
+    var inc=[[35,397],[45,469],[55,445],[65,293],[75,165]];
+    var g='<defs><linearGradient id="gapg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0506e" stop-opacity=".25"/><stop offset="1" stop-color="#f0506e" stop-opacity=".08"/></linearGradient></defs>';
+    var mob=k>1.3; [30,40,50,60,70,80,90,100].forEach(function(a){ g+='<line x1="'+X(a)+'" x2="'+X(a)+'" y1="'+T+'" y2="'+(H-B)+'" stroke="#f0f0f6"/>'; if(!mob||a===30||a===60||a===100) g+='<text x="'+X(a)+'" y="'+(H-6)+'" font-size="'+f(14)+'" font-weight="700" fill="#8c909c" text-anchor="'+(a===30?'start':a===100?'end':'middle')+'">'+a+'세</text>'; });
+    // retirement marker
+    g+='<line x1="'+X(60)+'" x2="'+X(60)+'" y1="'+T+'" y2="'+(H-B)+'" stroke="#111318" stroke-width="1.5" stroke-dasharray="4 4"/><text class="lb" style="animation-delay:1.4s" x="'+(X(60)+6)+'" y="'+(T+12)+'" font-size="'+f(12)+'" font-weight="800" fill="#111318">은퇴 60세</text>';
+    // gap area (need above zero after 60)
+    g+='<rect class="ar" style="animation-delay:1.6s" x="'+X(60)+'" y="'+Y(197.6)+'" width="'+(X(100)-X(60))+'" height="'+(Y(0)-Y(197.6))+'" fill="url(#gapg)"/>';
+    // income path (smooth through points, start at 30)
+    var P=inc.map(function(p){return [X(p[0]),Y(p[1])]});
+    var d='M'+P[0][0]+','+P[0][1]; for(var i=1;i<P.length;i++){ var cx=(P[i-1][0]+P[i][0])/2; d+=' C'+cx+','+P[i-1][1]+' '+cx+','+P[i][1]+' '+P[i][0]+','+P[i][1]; }
+    var tmp=document.createElementNS('http://www.w3.org/2000/svg','path'); tmp.setAttribute('d',d); el.appendChild(tmp); var len=tmp.getTotalLength(); el.removeChild(tmp);
+    g+='<path class="ln" style="--len:'+len.toFixed(0)+'" d="'+d+'" fill="none" stroke="#3b3ff5" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>';
+    g+='<path class="ar" style="animation-delay:2.2s" d="M'+X(75)+','+Y(165)+' L'+X(100)+','+Y(165)+'" stroke="#3b3ff5" stroke-width="3" stroke-dasharray="3 7" stroke-linecap="round" fill="none"/>';
+    // retired: drop to 0
+    g+='<path class="ar" style="animation-delay:1.8s" d="M'+X(60)+','+Y(0)+' L'+X(100)+','+Y(0)+'" stroke="#9ea2ad" stroke-width="3" stroke-dasharray="7 6" fill="none"/>';
+    // need line
+    var nl=X(100)-X(60);
+    g+='<line class="ln" style="--len:'+nl.toFixed(0)+';animation-delay:1.5s" x1="'+X(60)+'" y1="'+Y(197.6)+'" x2="'+X(100)+'" y2="'+Y(197.6)+'" stroke="#f0506e" stroke-width="5" stroke-linecap="round"/>';
+    inc.forEach(function(p,i){ var x=X(p[0]),y=Y(p[1]),dl=(0.35*(i+1)).toFixed(2)+'s', top=p[1]===469, show=!mob||top||p[1]===165||p[1]===293;
+      g+='<circle class="pt" style="animation-delay:'+dl+'" cx="'+x+'" cy="'+y+'" r="'+(top?8:6)+'" fill="#fff" stroke="#3b3ff5" stroke-width="3.5"/>';
+      if(show) g+='<text class="lb" style="animation-delay:'+dl+'" x="'+(p[1]===293?x+10:x)+'" y="'+(p[1]===165?y+18+8*k:y-14)+'" font-size="'+f(top?17:14)+'" font-weight="800" fill="#3b3ff5" text-anchor="'+(p[1]===293?'start':'middle')+'">'+p[1]+'만'+(top?' 정점':'')+'</text>'; });
+    g+='<text class="lb" style="animation-delay:2.4s" x="'+(X(100)-2)+'" y="'+(Y(197.6)-12)+'" font-size="'+f(14)+'" font-weight="800" fill="#f0506e" text-anchor="end">필요 생활비 197.6만</text>';
+    g+='<text class="lb" style="animation-delay:2.6s" x="'+X(mob?86:88)+'" y="'+(Y(197.6)+(Y(0)-Y(197.6))*(mob?0.85:0.62))+'" font-size="'+f(15)+'" font-weight="900" fill="#f0506e" text-anchor="middle">은퇴 후 매달 부족</text>';
+    if(!mob) g+='<text class="lb" style="animation-delay:2.2s" x="'+(X(100)-2)+'" y="'+(Y(0)-8)+'" font-size="'+f(12)+'" font-weight="700" fill="#8c909c" text-anchor="end">은퇴 시 소득 0원</text>';
+    el.innerHTML=g;
+    function go(){ card.classList.add('go'); }
+    if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){ go(); return; }
+    if('IntersectionObserver' in window){ var io=new IntersectionObserver(function(es){ if(es[0].isIntersecting){ go(); io.disconnect(); } },{threshold:.35}); io.observe(card); setTimeout(function(){ if(card.getBoundingClientRect().top<innerHeight) go(); },1500); } else go();
+  })();
 
   // retirement need chart (animated)
   (function(){
