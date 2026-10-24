@@ -406,6 +406,15 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
 @keyframes pop{0%{opacity:0;transform:scale(.2)}70%{opacity:1;transform:scale(1.3)}100%{opacity:1;transform:scale(1)}}
 @media (prefers-reduced-motion:reduce){.need svg .ln{stroke-dashoffset:0}.need svg .ar,.need svg .pt,.need svg .lb{opacity:1}}
 @media (max-width:560px){.need{padding:24px 18px 18px;border-radius:20px}}
+
+.infl-top{margin-bottom:10px}
+.infl-tag{display:inline-block;background:#111318;color:#fff;font-weight:800;font-size:14px;padding:7px 14px;border-radius:999px}
+.infl-badges{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.ib{border-radius:16px;padding:14px 16px;display:flex;flex-direction:column}
+.ib span{font-size:13px;font-weight:700}
+.ib b{font-size:clamp(30px,6vw,44px);font-weight:900;letter-spacing:-.03em;line-height:1.15}
+.ib.up{background:#fff4e0;color:#c77700}
+.ib.down{background:#fff0f3;color:var(--red)}
 </style>
 </head>
 <body>
@@ -483,7 +492,7 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
 
 <header class="hero wrap" id="top">
   <span data-k="top-1" class="pill">💪 커피값으로 만드는 평생 월급</span>
-  <h2 data-k="top-2" class="hero-h">매달 <span class="blue">20만원</span>이<br>평생 <span class="blue">월 100만원</span>이<br>됩니다</h2>
+  <h2 data-k="top-2" class="hero-h" style="font-size:clamp(32px,5.8vw,60px)">똑똑한 사람은 미리<br><span class="blue">일하지 않아도 돈이 들어오는<br class="pc"> 구조</span>를 세팅합니다</h2>
 </header>
 
 <div class="band" aria-label="핵심 요약">
@@ -494,20 +503,21 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
 <!-- 0 -->
 <section id="problem">
   <div class="wrap">
-    <div class="sec-head">
-      <span data-k="problem-1" class="tag">00 · PROBLEM</span>
-      <h2 data-k="problem-2">물가상승률 2% 반영 시,<br>30년이면 가치가 <span style="color:var(--red)">45% 하락</span></h2>
-      <p data-k="problem-3">은행 통장 속 숫자는 그대로인데, 살 수 있는 건 매년 줄어들어요.</p>
-    </div>
-    <div class="sec-head" style="margin:84px 0 28px">
+    <div class="sec-head" style="margin:0 0 28px">
       <h2 data-k="problem-6">지금 1,000만원,<br>은행에 두면 <span style="color:var(--red)">실제 가치는?</span> 🫠</h2>
     </div>
     <div class="card narrow need" id="meltCard">
+      <div class="infl-top">
+        <span class="infl-tag">📈 물가상승률 그래프 · 연 2% 가정</span>
+        <div class="infl-badges">
+          <div class="ib up"><span>30년간 물가</span><b>▲ 81%</b></div>
+          <div class="ib down"><span>원화 가치</span><b>▼ 45%</b></div>
+        </div>
+      </div>
       <div class="mlegend"><span><i style="background:#f59f00"></i>물가 (같은 물건 값)</span><span><i class="dash"></i>통장에 찍힌 숫자</span><span><i style="background:var(--red)"></i>원화의 실제 가치 (구매력)</span></div>
       <svg id="meltChart" viewBox="0 0 640 330" width="100%" role="img" aria-label="1,000만원을 은행에 30년 두었을 때 통장 금액과 실제 구매력 변화 선그래프"></svg>
       <p data-k="problem-7" style="font-size:14px;color:var(--ink-3);margin-top:12px">물가가 매년 2%씩 오르면 지금 1,000만원짜리가 30년 뒤엔 <b style="color:#e08a00">1,811만원</b>. 통장 속 1,030만원으로 살 수 있는 건 지금 돈 <b style="color:var(--red)">552만원어치</b>뿐이에요.</p>
     </div>
-    <p data-k="problem-8" class="conclude">은행은 돈을 ‘지켜’ 주지 않아요.<br>물가보다 <span class="blue">빨리 크는 곳</span>에 둬야 합니다.</p>
   </div>
 </section>
 
@@ -1055,8 +1065,8 @@ var PP=(function(){
     // side tags
     var ny=Y(1000*Math.pow(1.001,30));
     g+='<text class="lb" style="animation-delay:2s" x="'+X(30)+'" y="'+(ny-10)+'" font-size="'+f(13)+'" font-weight="700" fill="#8c909c" text-anchor="end">통장 숫자 1,030만원</text>';
-    g+='<text class="lb" style="animation-delay:2.2s" x="'+X(24)+'" y="'+(Y(1330)+6*k)+'" font-size="'+f(15)+'" font-weight="900" fill="#e08a00" text-anchor="middle">물가 ▲ 81%</text>';
-    g+='<text class="lb" style="animation-delay:2.4s" x="'+X(24)+'" y="'+(Y(835)+6*k)+'" font-size="'+f(15)+'" font-weight="900" fill="#f0506e" text-anchor="middle">원화 가치 ▼ 45%</text>';
+    if(!mob) g+='<g class="lb" style="animation-delay:2.2s"><rect x="'+(X(24)-74*k)+'" y="'+(Y(1330)-15*k)+'" width="'+(148*k)+'" height="'+(30*k)+'" rx="'+(15*k)+'" fill="#f59f00"/><text x="'+X(24)+'" y="'+(Y(1330)+6*k)+'" font-size="'+f(15)+'" font-weight="900" fill="#fff" text-anchor="middle">물가 ▲ 81%</text></g>';
+    if(!mob) g+='<g class="lb" style="animation-delay:2.4s"><rect x="'+(X(24)-74*k)+'" y="'+(Y(835)-15*k)+'" width="'+(148*k)+'" height="'+(30*k)+'" rx="'+(15*k)+'" fill="#f0506e"/><text x="'+X(24)+'" y="'+(Y(835)+6*k)+'" font-size="'+f(15)+'" font-weight="900" fill="#fff" text-anchor="middle">원화 가치 ▼ 45%</text></g>';
     el.innerHTML=g;
     function go(){ card.classList.add('go'); }
     if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){ go(); return; }
