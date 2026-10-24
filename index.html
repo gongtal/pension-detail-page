@@ -443,14 +443,31 @@ p,.need-sub,.facts-src,li{text-wrap:pretty}
 @media (max-width:700px){.care-grid{grid-template-columns:1fr}.cg{flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:4px 10px}.cg span{flex:1 1 100%}.cg.main{flex-direction:column}}
 .x62{display:inline-block;background:#fff;color:var(--blue);font-weight:800;font-size:clamp(20px,3.6vw,28px);padding:10px 22px;border-radius:999px;margin-top:10px;box-shadow:0 10px 24px -12px rgba(0,0,0,.4)}
 .x62 b{color:#f0506e;font-size:1.25em;font-weight:900}
-@media (max-width:560px){br.mo{display:inline}}
+@media (max-width:560px){br.mo{display:inline}
+  .mhide{display:none!important}
+  section{padding-top:64px}
+  .sec-head p{font-size:15px;line-height:1.7}
+  p{line-height:1.7}
+  .grid2,.grid3,.grid4{gap:10px}
+  .icard{display:grid;grid-template-columns:40px 1fr;column-gap:14px;align-items:center;padding:16px 18px}
+  .icard>.e,.icard>.n{grid-row:1/span 3;margin:0!important;align-self:center}
+  .icard>.e{font-size:28px}
+  .icard>:not(.e):not(.n){grid-column:2;margin-top:0}
+  .icard h3{font-size:17px}
+  .icard .big{font-size:26px;margin-top:2px}
+  .icard p{font-size:14px;margin-top:2px;line-height:1.5}
+  .mlegend,.need-legend,.road-legend{gap:4px 14px!important;font-size:12px!important;margin-top:8px!important;justify-content:flex-start}
+  .src-fold{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;cursor:pointer}
+  .src-fold.open{display:block}
+  .src-fold:not(.open)::before{content:"ⓘ ";}
+}
 </style>
 </head>
 <body>
 
 <div class="nav-shell">
   <nav class="nav">
-    <a class="logo" href="#reality"><i>🌱</i>평생 연금 플랜</a>
+    <a class="logo" href="#reality"><i>🌱</i>월 100만원 구조 만들기</a>
     <div class="menu">
       <a href="#problem">은행의 함정</a>
       <a href="#why">S&amp;P500 10년</a>
@@ -561,7 +578,7 @@ p,.need-sub,.facts-src,li{text-wrap:pretty}
       </div>
       <div class="mlegend"><span><i style="background:#f59f00"></i>물가 (같은 물건 값)</span><span><i class="dash"></i>통장에 찍힌 숫자</span><span><i style="background:var(--red)"></i>원화의 실제 가치 (구매력)</span></div>
       <svg id="meltChart" viewBox="0 0 640 330" width="100%" role="img" aria-label="1,000만원을 은행에 30년 두었을 때 통장 금액과 실제 구매력 변화 선그래프"></svg>
-      <p data-k="problem-7" style="font-size:14px;color:var(--ink-3);margin-top:12px">물가가 매년 2%씩 오르면 지금 1,000만원짜리가 30년 뒤엔 <b style="color:#e08a00">1,811만원</b>. 통장 속 1,030만원으로 살 수 있는 건 지금 돈 <b style="color:var(--red)">552만원어치</b>뿐이에요.</p>
+      <p data-k="problem-7" class="mhide" style="font-size:14px;color:var(--ink-3);margin-top:12px">물가가 매년 2%씩 오르면 지금 1,000만원짜리가 30년 뒤엔 <b style="color:#e08a00">1,811만원</b>. 통장 속 1,030만원으로 살 수 있는 건 지금 돈 <b style="color:var(--red)">552만원어치</b>뿐이에요.</p>
     </div>
     <div class="sec-head" style="margin:84px 0 28px">
       <h2 data-k="problem-8">만 원으로 <span style="color:var(--red)">짜장면 한 그릇</span>도<br>못 먹는 시대가 옵니다 🍜</h2>
@@ -573,7 +590,7 @@ p,.need-sub,.facts-src,li{text-wrap:pretty}
       </div>
       <svg id="jjChart" viewBox="0 0 640 340" width="100%" role="img" aria-label="서울 짜장면 평균 가격 추이와 전망: 2014년 4,500원, 2025년 7,500원, 연 5.1% 상승 시 2030년 1만원 돌파"></svg>
       <div class="mlegend"><span><i style="background:var(--red)"></i>실제 평균 가격 (서울)</span><span><i class="dash" style="background:repeating-linear-gradient(90deg,#f0506e 0 5px,transparent 5px 9px)"></i>최근 10년 추세(연 5.1%) 유지 시</span></div>
-      <p data-k="problem-9" style="font-size:14px;color:var(--ink-3);margin-top:10px">10년 동안 <b style="color:var(--red)">67%</b> 올랐어요. 통장 속 만 원은 그대로인데, 짜장면 값은 매년 올라갑니다.</p>
+      <p data-k="problem-9" class="mhide" style="font-size:14px;color:var(--ink-3);margin-top:10px">10년 동안 <b style="color:var(--red)">67%</b> 올랐어요. 통장 속 만 원은 그대로인데, 짜장면 값은 매년 올라갑니다.</p>
       <p class="facts-src">출처: 한국소비자원 가격정보포털 ‘참가격’ 서울 짜장면 평균 가격 (아시아경제, 2025.02.18 보도) · 2030년은 2014~2025년 연평균 상승률(약 5.1%)이 이어진다고 가정한 단순 전망이에요.</p>
     </div>
   </div>
@@ -615,7 +632,7 @@ p,.need-sub,.facts-src,li{text-wrap:pretty}
       <div class="road-steps"><span>📅 매달 20만원</span><span>📈 연 10% 복리</span><span>🎁 환급금 매년 39.6만원 재투자</span></div>
       <svg id="roadChart" viewBox="0 0 640 380" width="100%" role="img" aria-label="30세부터 60세까지 매달 20만원 연 10% 투자 시 평가금액과 원금 선그래프"></svg>
       <div class="road-legend"><span><i class="dash" style="background:repeating-linear-gradient(90deg,#9ea1d8 0 5px,transparent 5px 9px);height:4px;width:18px;vertical-align:3px"></i>내가 넣은 원금(환급 포함)</span><span><i style="background:var(--blue);height:4px;width:18px;vertical-align:3px"></i>평가금액 (연 10% 복리)</span></div>
-      <p data-k="how-4" style="font-size:13px;color:var(--ink-3);margin-top:12px;text-align:center">마지막 15년에 전체 자산의 80% 이상이 만들어져요. 월복리 단순 계산이라 본문 수치(5억 1,723만원)와 소폭 차이가 있어요.</p>
+      <p data-k="how-4" class="mhide" style="font-size:13px;color:var(--ink-3);margin-top:12px;text-align:center">마지막 15년에 전체 자산의 80% 이상이 만들어져요. 월복리 단순 계산이라 본문 수치(5억 1,723만원)와 소폭 차이가 있어요.</p>
     </div>
     <div class="result">
       <div class="k">60세 예상 평가금액 (연 10% 가정)</div>
@@ -1171,6 +1188,9 @@ var PP=(function(){
   ['age','pay','rate'].forEach(function(id){$(id).addEventListener('input',upd)});
   upd();
 })();
+</script>
+<script>
+(function(){document.querySelectorAll('.need-src,.news-src,.facts-src,.fine').forEach(function(e){e.classList.add('src-fold');e.addEventListener('click',function(ev){if(!matchMedia('(max-width:560px)').matches)return;if(ev.target.closest('a')&&e.classList.contains('open'))return;if(ev.target.closest('a'))ev.preventDefault();e.classList.toggle('open');});});})();
 </script>
 </body>
 </html>
