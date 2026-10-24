@@ -378,6 +378,33 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
 .real-stats .main .s{color:#d6d8e0}
 .real-stats .main .s b{color:#fff}
 @media (max-width:700px){.real-stats{grid-template-columns:1fr 1fr}.real-stats>div.main{grid-column:1/-1}}
+
+/* Need chart */
+.need{background:#111318;color:#fff;border-radius:26px;padding:30px 28px 22px;box-shadow:0 24px 60px -24px rgba(17,19,24,.6)}
+.need-q{font-size:clamp(17px,2.6vw,21px);font-weight:700;color:#c9ccd6}
+.need-q b{color:#fff}
+.need-sum{margin:6px 0 4px;line-height:1}
+.need-num{font-size:clamp(64px,13vw,112px);font-weight:900;letter-spacing:-.05em;color:#ff5a76;font-variant-numeric:tabular-nums}
+.need-unit{font-size:clamp(26px,5vw,40px);font-weight:800;margin-left:6px;color:#ff5a76}
+.need-sub{font-size:15px;color:#a3a7b3}
+.need-sub b{color:#fff}
+#needChart{margin-top:18px;overflow:visible}
+.need-legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:#a3a7b3;margin-top:6px}
+.need-legend i{display:inline-block;width:18px;height:4px;border-radius:2px;background:#ff5a76;margin-right:6px;vertical-align:3px}
+.need-legend i.g{background:repeating-linear-gradient(90deg,#6b7080 0 5px,transparent 5px 9px)}
+.need-src{font-size:11px;color:#7d8291;margin-top:10px}
+#needChart .ln{stroke-dasharray:var(--len);stroke-dashoffset:var(--len)}
+#needChart .ar{opacity:0}
+#needChart .pt,#needChart .lb{opacity:0;transform-box:fill-box;transform-origin:center}
+.need.go #needChart .ln{animation:draw 2.4s cubic-bezier(.4,0,.2,1) forwards}
+.need.go #needChart .ar{animation:fade 1.2s .6s forwards}
+.need.go #needChart .pt{animation:pop .4s forwards}
+.need.go #needChart .lb{animation:fade .5s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fade{to{opacity:1}}
+@keyframes pop{0%{opacity:0;transform:scale(.2)}70%{opacity:1;transform:scale(1.3)}100%{opacity:1;transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){#needChart .ln{stroke-dashoffset:0}#needChart .ar,#needChart .pt,#needChart .lb{opacity:1}}
+@media (max-width:560px){.need{padding:24px 18px 18px;border-radius:20px}}
 </style>
 </head>
 <body>
@@ -407,10 +434,16 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
       <span class="tag" style="color:var(--red)">⚠️ 지금 한국의 현실</span>
       <h2>노후 준비를 하지 않은<br>세대의 <span style="color:var(--red)">최후</span></h2>
     </div>
-    <figure class="real-photo">
-      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_37S5xj2gKiWEr1s6dCqqEPT60zn/hf_20261024_023815_a1ec759b-9882-48fd-9e00-1a784e238136.png" alt="새벽 골목에서 폐지를 실은 수레를 끄는 노인의 뒷모습" width="1344" height="752" loading="eager">
-      <figcaption>※ 이해를 돕기 위한 연출 이미지(AI 생성)예요.</figcaption>
-    </figure>
+    <div class="need" id="needCard">
+      <div class="need-top">
+        <div class="need-q">60세에 소득이 끊기고, <b>100세까지</b> 산다면?</div>
+        <div class="need-sum"><span class="need-num" id="needNum">0</span><span class="need-unit">억원</span></div>
+        <div class="need-sub">부부 기준 노후생활비 <b>월 298만원 × 12개월 × 40년</b></div>
+      </div>
+      <svg id="needChart" viewBox="0 0 640 300" width="100%" role="img" aria-label="60세부터 100세까지 누적 노후생활비 선그래프: 70세 3.6억, 80세 7.2억, 90세 10.7억, 100세 14.3억"></svg>
+      <div class="need-legend"><span><i></i>필요한 누적 생활비</span><span><i class="g"></i>소득 (60세 이후 0원)</span></div>
+      <p class="need-src">출처: 국민연금연구원 「2024년 국민노후보장패널조사 제10차」 적정 노후생활비(부부 월 298만원) 기준 단순 계산 · 물가상승 미반영</p>
+    </div>
     <div class="real-stats">
       <div class="main"><div class="k">66세 이상 상대빈곤율</div><div class="v">39.8<small>%</small></div><div class="s">노인 10명 중 4명이 빈곤 · <b>OECD 최고</b> (2023년)</div></div>
       <div><div class="k">생활비를 스스로 마련</div><div class="v">74.7<small>%</small></div><div class="s">자녀·친척 지원은 13.1%뿐</div></div>
@@ -851,6 +884,37 @@ var SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbxuNwXNARo1Gn_76vJ
 
 
 
+
+
+  // retirement need chart (animated)
+  (function(){
+    var el=document.getElementById('needChart'), card=document.getElementById('needCard'); if(!el) return;
+    var k=Math.min(1.9,Math.max(1,640/(el.clientWidth||640))), H=k>1.3?420:300; el.setAttribute('viewBox','0 0 640 '+H);
+    var W=640,L=20,R=20,T=40+10*k,B=26+18*k, maxV=15;
+    function X(a){return L+(W-L-R)*(a-60)/40} function Y(v){return T+(H-T-B)*(1-v/maxV)}
+    function f(n){return (n*k).toFixed(0)}
+    var per=298*12/10000; // 억/년
+    var g='<defs><linearGradient id="ng" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff5a76" stop-opacity=".35"/><stop offset="1" stop-color="#ff5a76" stop-opacity="0"/></linearGradient></defs>';
+    [60,70,80,90,100].forEach(function(a){ g+='<line x1="'+X(a)+'" x2="'+X(a)+'" y1="'+T+'" y2="'+(H-B)+'" stroke="#262a33"/><text x="'+X(a)+'" y="'+(H-6)+'" font-size="'+f(14)+'" font-weight="700" fill="#8a8f9c" text-anchor="'+(a===60?'start':a===100?'end':'middle')+'">'+a+'세</text>'; });
+    // income line at 0 (dashed)
+    g+='<line x1="'+X(60)+'" x2="'+X(100)+'" y1="'+Y(0)+'" y2="'+Y(0)+'" stroke="#6b7080" stroke-width="2.5" stroke-dasharray="7 6"/>';
+    var len=Math.hypot(X(100)-X(60),Y(0)-Y(per*40))+2;
+    g+='<path class="ar" d="M'+X(60)+','+Y(0)+' L'+X(100)+','+Y(per*40)+' L'+X(100)+','+Y(0)+'Z" fill="url(#ng)"/>';
+    g+='<line class="ln" style="--len:'+len.toFixed(0)+'" x1="'+X(60)+'" y1="'+Y(0)+'" x2="'+X(100)+'" y2="'+Y(per*40)+'" stroke="#ff5a76" stroke-width="5" stroke-linecap="round"/>';
+    [[70,'3.6억'],[80,'7.2억'],[90,'10.7억'],[100,'14.3억']].forEach(function(m,i){
+      var x=X(m[0]), y=Y(per*(m[0]-60)), d=(0.6*(i+1)).toFixed(1)+'s', last=m[0]===100;
+      g+='<circle class="pt" style="animation-delay:'+d+'" cx="'+x+'" cy="'+y+'" r="'+(last?9:6)+'" fill="'+(last?'#ff5a76':'#111318')+'" stroke="#ff5a76" stroke-width="3.5"/>';
+      g+='<text class="lb" style="animation-delay:'+d+'" x="'+(last?x-20:x)+'" y="'+(last?y+7:y-14)+'" font-size="'+f(last?20:15)+'" font-weight="800" fill="'+(last?'#ff5a76':'#fff')+'" text-anchor="'+(last?'end':'middle')+'">'+m[1]+'</text>';
+    });
+    g+='<text x="'+(X(100)-2)+'" y="'+(Y(0)-10)+'" font-size="'+f(12)+'" font-weight="700" fill="#8a8f9c" text-anchor="end">소득 0원</text>';
+    el.innerHTML=g;
+    var num=document.getElementById('needNum'), target=14.3, done=false;
+    function run(){ if(done) return; done=true; card.classList.add('go');
+      var t0=null, dur=2400; function step(t){ if(!t0) t0=t; var p=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-p,3); num.textContent=(target*e).toFixed(1); if(p<1) requestAnimationFrame(step); } requestAnimationFrame(step); }
+    if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){ num.textContent=target.toFixed(1); card.classList.add('go'); return; }
+    if('IntersectionObserver' in window){ var io=new IntersectionObserver(function(es){ if(es[0].isIntersecting){ run(); io.disconnect(); } },{threshold:.35}); io.observe(card); setTimeout(function(){ if(!done && card.getBoundingClientRect().top<innerHeight) run(); },1500); }
+    else run();
+  })();
 
   // S&P500 10y chart (Naver 10y + year-end closes)
   (function(){
