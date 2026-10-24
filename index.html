@@ -487,6 +487,27 @@ p,.need-sub,.facts-src,li{text-wrap:pretty}
 .tl-bar i{display:block;height:100%;background:var(--blue);border-radius:99px;min-width:10px;overflow:hidden}
 .tl-bar u{display:block;height:100%;background:#9ea1d8}
 @media (max-width:560px){.timeline{padding:22px 18px 6px}.tl{grid-template-columns:52px 1fr;gap:12px;padding-bottom:18px}.tl:before{left:25px}.tl-age{width:52px;height:40px;font-size:19px}.tl h4{font-size:16px}.tl p{font-size:13.5px}}
+/* income bars (mobile) */
+.inc-bars{display:none}
+@media (max-width:560px){
+  #incChart{display:none}
+  .inc-bars{display:block;position:relative;margin:18px 0 6px;padding-top:30px;--lw:50px}
+  .ibr{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+  .ib-l{flex:0 0 var(--lw);font-size:15px;font-weight:800;color:var(--ink-2)}
+  .ib-t{flex:1;position:relative;height:38px;display:flex;align-items:center}
+  .ib-t i{font-style:normal;display:flex;align-items:center;justify-content:flex-end;height:38px;width:0;border-radius:10px;background:linear-gradient(90deg,#8f92ff,#3b3ff5);transition:width 1s cubic-bezier(.2,.8,.2,1);overflow:hidden;padding-right:10px;box-sizing:border-box}
+  .need.go .ib-t i{font-style:normal;width:var(--w)}
+  .ib-t b{color:#fff;font-size:15px;font-weight:900;white-space:nowrap}
+  .ibr.low .ib-t i{font-style:normal;background:linear-gradient(90deg,#ff9aab,#f0506e)}
+  .ibr.low .ib-l{color:var(--red)}
+  .ib-t em{position:absolute;left:calc(39.5% + 10px);top:50%;transform:translateY(-50%);font-style:normal;font-size:12px;font-weight:800;padding:3px 8px;border-radius:99px;background:var(--blue-soft);color:var(--blue);opacity:0;transition:opacity .4s 1.2s}
+  .ibr.low .ib-t em{background:#ffe8ec;color:var(--red)}
+  .need.go .ib-t em{opacity:1}
+  .ib-need{position:absolute;top:0;bottom:0;left:calc(var(--lw) + 10px);right:0;z-index:0;pointer-events:none}
+  .ib-t i{position:relative;z-index:1}
+  .ib-need:before{content:"";position:absolute;left:var(--n);top:22px;bottom:4px;border-left:3px dashed #f0506e}
+  .ib-need span{position:absolute;left:var(--n);top:0;transform:translateX(-12px);font-size:12px;font-weight:900;color:#fff;background:#f0506e;padding:2px 8px;border-radius:99px;white-space:nowrap}
+}
 </style>
 </head>
 <body>
@@ -520,7 +541,8 @@ p,.need-sub,.facts-src,li{text-wrap:pretty}
       <div class="need-q">나이대별 <b>한 달 평균 소득</b> vs <b>필요한 생활비</b></div>
       <div class="inc-head"><span class="blue">월 소득은 줄고</span>,<br class="mo"> <span style="color:var(--red)">생활비는 그대로</span></div>
       <svg id="incChart" viewBox="0 0 640 320" width="100%" role="img" aria-label="연령대별 월평균 소득과 필요 생활비 비교 선그래프: 30대 397만원, 40대 469만원, 50대 445만원, 60대 293만원, 70대 이상 165만원, 필요 생활비 197.6만원"></svg>
-      <div class="inc-steps"><div><b>①</b> 40대에 가장 많이 벌어요 <em>월 469만원</em></div><div><b>②</b> 60대부터 소득이 뚝 떨어져요 <em>월 293만원</em></div><div class="r"><b>③</b> 70대엔 생활비보다 적어요 <em>월 165만원 &lt; 198만원</em></div></div>
+      <div class="inc-bars" aria-hidden="true"><div class="ib-need" style="--n:39.5%"><span>필요 생활비 198만원</span></div><div class="ibr"><span class="ib-l">30대</span><div class="ib-t"><i style="--w:79.4%;transition-delay:0.00s"><b>397만원</b></i></div></div><div class="ibr top"><span class="ib-l">40대</span><div class="ib-t"><i style="--w:93.8%;transition-delay:0.15s"><b>469만원</b></i></div></div><div class="ibr"><span class="ib-l">50대</span><div class="ib-t"><i style="--w:89.0%;transition-delay:0.30s"><b>445만원</b></i></div></div><div class="ibr"><span class="ib-l">60대</span><div class="ib-t"><i style="--w:58.6%;transition-delay:0.45s"><b>293만원</b></i></div></div><div class="ibr low"><span class="ib-l">70대+</span><div class="ib-t"><i style="--w:33.0%;transition-delay:0.60s"><b>165만원</b></i><em>😰 부족</em></div></div></div>
+      <div class="inc-steps mhide"><div><b>①</b> 40대에 가장 많이 벌어요 <em>월 469만원</em></div><div><b>②</b> 60대부터 소득이 뚝 떨어져요 <em>월 293만원</em></div><div class="r"><b>③</b> 70대엔 생활비보다 적어요 <em>월 165만원 &lt; 198만원</em></div></div>
       <div class="need-legend"><span><i style="background:var(--blue)"></i>한 달 평균 소득 (일하는 사람 기준)</span><span><i class="g" style="background:repeating-linear-gradient(90deg,#f0506e 0 6px,transparent 6px 10px)"></i>1인 필요 생활비</span></div>
       <p data-k="reality-3" class="need-src">출처: 국가데이터처 「2024년 임금근로일자리 소득(보수) 결과」 연령대별 월평균(세전) · 국민연금연구원 「2024년 국민노후보장패널조사 제10차」 개인 적정 노후생활비</p>
     </div>
