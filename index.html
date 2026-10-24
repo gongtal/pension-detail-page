@@ -380,19 +380,19 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
 @media (max-width:700px){.real-stats{grid-template-columns:1fr 1fr}.real-stats>div.main{grid-column:1/-1}}
 
 /* Need chart */
-.need{background:#111318;color:#fff;border-radius:26px;padding:30px 28px 22px;box-shadow:0 24px 60px -24px rgba(17,19,24,.6)}
-.need-q{font-size:clamp(17px,2.6vw,21px);font-weight:700;color:#c9ccd6}
-.need-q b{color:#fff}
+.need{background:#fff;color:var(--ink);border-radius:26px;padding:30px 28px 22px;box-shadow:var(--shadow);border:1px solid #f1f1f7}
+.need-q{font-size:clamp(17px,2.6vw,21px);font-weight:700;color:var(--ink-2)}
+.need-q b{color:var(--ink)}
 .need-sum{margin:6px 0 4px;line-height:1}
-.need-num{font-size:clamp(64px,13vw,112px);font-weight:900;letter-spacing:-.05em;color:#ff5a76;font-variant-numeric:tabular-nums}
-.need-unit{font-size:clamp(26px,5vw,40px);font-weight:800;margin-left:6px;color:#ff5a76}
-.need-sub{font-size:15px;color:#a3a7b3}
-.need-sub b{color:#fff}
+.need-num{font-size:clamp(64px,13vw,112px);font-weight:900;letter-spacing:-.05em;color:var(--red);font-variant-numeric:tabular-nums}
+.need-unit{font-size:clamp(26px,5vw,40px);font-weight:800;margin-left:6px;color:var(--red)}
+.need-sub{font-size:15px;color:var(--ink-3)}
+.need-sub b{color:var(--ink)}
 #needChart{margin-top:18px;overflow:visible}
-.need-legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:#a3a7b3;margin-top:6px}
-.need-legend i{display:inline-block;width:18px;height:4px;border-radius:2px;background:#ff5a76;margin-right:6px;vertical-align:3px}
-.need-legend i.g{background:repeating-linear-gradient(90deg,#6b7080 0 5px,transparent 5px 9px)}
-.need-src{font-size:11px;color:#7d8291;margin-top:10px}
+.need-legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--ink-2);margin-top:6px}
+.need-legend i{display:inline-block;width:18px;height:4px;border-radius:2px;background:var(--red);margin-right:6px;vertical-align:3px}
+.need-legend i.g{background:repeating-linear-gradient(90deg,#a3a7b3 0 5px,transparent 5px 9px)}
+.need-src{font-size:11px;color:var(--ink-3);margin-top:10px}
 #needChart .ln{stroke-dasharray:var(--len);stroke-dashoffset:var(--len)}
 #needChart .ar{opacity:0}
 #needChart .pt,#needChart .lb{opacity:0;transform-box:fill-box;transform-origin:center}
@@ -894,17 +894,17 @@ var SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbxuNwXNARo1Gn_76vJ
     function X(a){return L+(W-L-R)*(a-60)/40} function Y(v){return T+(H-T-B)*(1-v/maxV)}
     function f(n){return (n*k).toFixed(0)}
     var per=298*12/10000; // 억/년
-    var g='<defs><linearGradient id="ng" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff5a76" stop-opacity=".35"/><stop offset="1" stop-color="#ff5a76" stop-opacity="0"/></linearGradient></defs>';
-    [60,70,80,90,100].forEach(function(a){ g+='<line x1="'+X(a)+'" x2="'+X(a)+'" y1="'+T+'" y2="'+(H-B)+'" stroke="#262a33"/><text x="'+X(a)+'" y="'+(H-6)+'" font-size="'+f(14)+'" font-weight="700" fill="#8a8f9c" text-anchor="'+(a===60?'start':a===100?'end':'middle')+'">'+a+'세</text>'; });
+    var g='<defs><linearGradient id="ng" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0506e" stop-opacity=".22"/><stop offset="1" stop-color="#ff5a76" stop-opacity="0"/></linearGradient></defs>';
+    [60,70,80,90,100].forEach(function(a){ g+='<line x1="'+X(a)+'" x2="'+X(a)+'" y1="'+T+'" y2="'+(H-B)+'" stroke="#f0f0f6"/><text x="'+X(a)+'" y="'+(H-6)+'" font-size="'+f(14)+'" font-weight="700" fill="#8a8f9c" text-anchor="'+(a===60?'start':a===100?'end':'middle')+'">'+a+'세</text>'; });
     // income line at 0 (dashed)
-    g+='<line x1="'+X(60)+'" x2="'+X(100)+'" y1="'+Y(0)+'" y2="'+Y(0)+'" stroke="#6b7080" stroke-width="2.5" stroke-dasharray="7 6"/>';
+    g+='<line x1="'+X(60)+'" x2="'+X(100)+'" y1="'+Y(0)+'" y2="'+Y(0)+'" stroke="#b6b9c4" stroke-width="2.5" stroke-dasharray="7 6"/>';
     var len=Math.hypot(X(100)-X(60),Y(0)-Y(per*40))+2;
     g+='<path class="ar" d="M'+X(60)+','+Y(0)+' L'+X(100)+','+Y(per*40)+' L'+X(100)+','+Y(0)+'Z" fill="url(#ng)"/>';
-    g+='<line class="ln" style="--len:'+len.toFixed(0)+'" x1="'+X(60)+'" y1="'+Y(0)+'" x2="'+X(100)+'" y2="'+Y(per*40)+'" stroke="#ff5a76" stroke-width="5" stroke-linecap="round"/>';
+    g+='<line class="ln" style="--len:'+len.toFixed(0)+'" x1="'+X(60)+'" y1="'+Y(0)+'" x2="'+X(100)+'" y2="'+Y(per*40)+'" stroke="#f0506e" stroke-width="5" stroke-linecap="round"/>';
     [[70,'3.6억'],[80,'7.2억'],[90,'10.7억'],[100,'14.3억']].forEach(function(m,i){
       var x=X(m[0]), y=Y(per*(m[0]-60)), d=(0.6*(i+1)).toFixed(1)+'s', last=m[0]===100;
-      g+='<circle class="pt" style="animation-delay:'+d+'" cx="'+x+'" cy="'+y+'" r="'+(last?9:6)+'" fill="'+(last?'#ff5a76':'#111318')+'" stroke="#ff5a76" stroke-width="3.5"/>';
-      g+='<text class="lb" style="animation-delay:'+d+'" x="'+(last?x-20:x)+'" y="'+(last?y+7:y-14)+'" font-size="'+f(last?20:15)+'" font-weight="800" fill="'+(last?'#ff5a76':'#fff')+'" text-anchor="'+(last?'end':'middle')+'">'+m[1]+'</text>';
+      g+='<circle class="pt" style="animation-delay:'+d+'" cx="'+x+'" cy="'+y+'" r="'+(last?9:6)+'" fill="'+(last?'#f0506e':'#fff')+'" stroke="#f0506e" stroke-width="3.5"/>';
+      g+='<text class="lb" style="animation-delay:'+d+'" x="'+(last?x-20:x)+'" y="'+(last?y+7:y-14)+'" font-size="'+f(last?20:15)+'" font-weight="800" fill="'+(last?'#f0506e':'#111318')+'" text-anchor="'+(last?'end':'middle')+'">'+m[1]+'</text>';
     });
     g+='<text x="'+(X(100)-2)+'" y="'+(Y(0)-10)+'" font-size="'+f(12)+'" font-weight="700" fill="#8a8f9c" text-anchor="end">소득 0원</text>';
     el.innerHTML=g;
