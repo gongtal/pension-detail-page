@@ -208,7 +208,7 @@ function toLite(html){
     if(c.nodeType===3) return c.nodeValue.replace(/\s+/g,' ');
     if(c.nodeType!==1) return '';
     var t=c.tagName, inner=walk(c);
-    if(t==='BR') return c.classList.contains('pc')?' ':'\n';
+    if(t==='BR') return (c.classList.contains('pc')||c.classList.contains('mo'))?' ':'\n';
     if(t==='B'||t==='STRONG') return '**'+inner+'**';
     if(t==='SPAN'&&c.classList.contains('blue')) return '['+inner+']';
     if(t==='SPAN'&&/var\(--red\)/.test(c.getAttribute('style')||'')) return '{'+inner+'}';

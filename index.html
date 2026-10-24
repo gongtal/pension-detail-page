@@ -295,6 +295,8 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
   th,td{padding:13px 8px;font-size:14px}
   .author{flex-direction:column;text-align:center}
   br.pc{display:none}
+  .inc-steps em{flex-basis:100%;margin-left:26px}
+  .equation{flex-direction:column;gap:6px}.equation .box{min-width:240px}.equation .op{line-height:1}.equation .op.r90{transform:rotate(90deg)}
   .minus{grid-template-columns:1fr;gap:4px;max-width:300px}.minus .op{text-align:center;line-height:1}
   .news{padding:22px}.news-stats{grid-template-columns:1fr 1fr}.news-stats>div.main{grid-row:auto;grid-column:1/-1}.news-stats .main .v{font-size:40px}
   .vs .big{font-size:24px}
@@ -416,6 +418,10 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
 .ib.up{background:#fff4e0;color:#c77700}
 .ib.down{background:#fff0f3;color:var(--red)}
 
+br.mo{display:none}
+h1,h2,h3,.inc-head,.hero-h,.cmp-diff,.news-title,.need-q{text-wrap:balance}
+p,.need-sub,.facts-src,li{text-wrap:pretty}
+.nw{white-space:nowrap}
 .inc-steps{display:grid;gap:8px;margin-top:14px}
 .inc-steps div{background:#f7f7fb;border-radius:12px;padding:11px 14px;font-size:15px;font-weight:700;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .inc-steps b{color:var(--blue)}
@@ -437,6 +443,7 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
 @media (max-width:700px){.care-grid{grid-template-columns:1fr}.cg{flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:4px 10px}.cg span{flex:1 1 100%}.cg.main{flex-direction:column}}
 .x62{display:inline-block;background:#fff;color:var(--blue);font-weight:800;font-size:clamp(20px,3.6vw,28px);padding:10px 22px;border-radius:999px;margin-top:10px;box-shadow:0 10px 24px -12px rgba(0,0,0,.4)}
 .x62 b{color:#f0506e;font-size:1.25em;font-weight:900}
+@media (max-width:560px){br.mo{display:inline}}
 </style>
 </head>
 <body>
@@ -468,7 +475,7 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
     </div>
     <div class="need" id="incCard" style="margin-bottom:20px">
       <div class="need-q">나이대별 <b>한 달 평균 소득</b> vs <b>필요한 생활비</b></div>
-      <div class="inc-head"><span class="blue">월 소득은 줄고</span>, <span style="color:var(--red)">생활비는 그대로</span></div>
+      <div class="inc-head"><span class="blue">월 소득은 줄고</span>,<br class="mo"> <span style="color:var(--red)">생활비는 그대로</span></div>
       <svg id="incChart" viewBox="0 0 640 320" width="100%" role="img" aria-label="연령대별 월평균 소득과 필요 생활비 비교 선그래프: 30대 397만원, 40대 469만원, 50대 445만원, 60대 293만원, 70대 이상 165만원, 필요 생활비 197.6만원"></svg>
       <div class="inc-steps"><div><b>①</b> 40대에 가장 많이 벌어요 <em>월 469만원</em></div><div><b>②</b> 60대부터 소득이 뚝 떨어져요 <em>월 293만원</em></div><div class="r"><b>③</b> 70대엔 생활비보다 적어요 <em>월 165만원 &lt; 198만원</em></div></div>
       <div class="need-legend"><span><i style="background:var(--blue)"></i>한 달 평균 소득 (일하는 사람 기준)</span><span><i class="g" style="background:repeating-linear-gradient(90deg,#f0506e 0 6px,transparent 6px 10px)"></i>1인 필요 생활비</span></div>
@@ -480,7 +487,7 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
     <div class="need" id="needCard">
       <div class="need-top">
         <div class="need-sum"><span class="need-num" id="needNum">0</span><span class="need-unit">억원</span></div>
-        <div class="need-sub">부부 기준 노후생활비 <b>월 298만원 × 12개월 × 40년</b></div>
+        <div class="need-sub">부부 기준 노후생활비<br class="mo"> <b>월 298만원 × 12개월 × 40년</b></div>
       </div>
       <svg id="needChart" viewBox="0 0 640 300" width="100%" role="img" aria-label="60세부터 100세까지 누적 노후생활비 선그래프: 70세 3.6억, 80세 7.2억, 90세 10.7억, 100세 14.3억"></svg>
       <div class="need-legend"><span><i></i>필요한 누적 생활비</span><span><i class="g"></i>소득 (60세 이후 0원)</span></div>
@@ -513,7 +520,7 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
       </div>
       <figcaption data-k="intro-1">출처: SBS ‘미운 우리 새끼’</figcaption>
     </figure>
-    <h1 data-k="intro-2" class="intro-h">40대에 이미<br><span class="blue">노후 준비를 끝낸</span> 분들도 많습니다.</h1>
+    <h1 data-k="intro-2" class="intro-h">40대에 이미<br><span class="blue">노후 준비를 끝낸</span><br class="mo"> 분들도 많습니다.</h1>
 
     <div class="age100">
       <div class="age100-tag">⏳ 100세 시대</div>
@@ -530,7 +537,7 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
 
 <header class="hero wrap" id="top">
   <span data-k="top-1" class="pill">💪 커피값으로 만드는 평생 월급</span>
-  <h2 data-k="top-2" class="hero-h" style="font-size:clamp(32px,5.8vw,60px)">똑똑한 사람은 미리<br><span class="blue">일하지 않아도 돈이 들어오는<br class="pc"> 구조</span>를 세팅합니다</h2>
+  <h2 data-k="top-2" class="hero-h" style="font-size:clamp(32px,5.8vw,60px)">똑똑한 사람은 미리<br><span class="blue">일하지 않아도<br class="mo"> 돈이 들어오는<br class="pc"> 구조</span>를<br class="mo"> 세팅합니다</h2>
 </header>
 
 <div class="band" aria-label="핵심 요약">
@@ -542,7 +549,7 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
 <section id="problem">
   <div class="wrap">
     <div class="sec-head" style="margin:0 0 28px">
-      <h2 data-k="problem-6">지금 1,000만원, 은행에 30년 두면<br><span style="color:var(--red)">실제 가치는 552만원</span></h2>
+      <h2 data-k="problem-6">지금 1,000만원,<br class="mo"> 은행에 30년 두면<br><span style="color:var(--red)">실제 가치는 552만원</span></h2>
     </div>
     <div class="card narrow need" id="meltCard">
       <div class="infl-top">
@@ -577,7 +584,7 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
   <div class="wrap">
     <div class="sec-head">
       <span data-k="why-1" class="tag">01 · WHY S&amp;P500</span>
-      <h2 data-k="why-2">현재 부자들은<br><span class="blue">달러와 S&amp;P 500</span> 투자를<br class="pc"> 하고 있습니다.</h2>
+      <h2 data-k="why-2">현재 부자들은<br><span class="blue">달러와 S&amp;P 500</span><br class="mo"> 투자를<br class="pc"> 하고 있습니다.</h2>
       <p data-k="why-3">미국 상위 500개 기업에 한 번에 투자하는 S&amp;P500 지수.<br class="pc"> 최근 10년 연평균 약 13.7% — 위기는 있었지만, 역사는 거스를 수 없었어요.</p>
     </div>
     <div class="card spx narrow">
@@ -632,7 +639,7 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
     </div>
     <div class="equation">
       <div class="box">연 240만원 납입</div>
-      <div class="op">→</div>
+      <div class="op r90">→</div>
       <div class="box em">매년 약 39.6만원 환급</div>
     </div>
     <div class="narrow body" style="text-align:center">
@@ -656,7 +663,7 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
         <div class="cmp-row"><div class="cmp-l">일반 증권 계좌<small>국내 상장 S&amp;P500 ETF</small></div><div class="cmp-bar"><div style="width:75.3%"></div></div><div class="cmp-v">약 3.94억</div></div>
         <div class="cmp-row best"><div class="cmp-l">연금저축펀드 계좌<small>같은 국내 상장 S&amp;P500 ETF</small></div><div class="cmp-bar"><div style="width:94.5%"></div></div><div class="cmp-v">약 4.95억</div></div>
       </div>
-      <div class="cmp-diff">계좌 하나 바꿨을 뿐인데 <b>약 1억원</b> 차이 💸</div>
+      <div class="cmp-diff">계좌 하나 바꿨을 뿐인데 <span class="nw"><b>약 1억원</b> 차이 💸</span></div>
       <p data-k="faq-5" class="facts-src" style="margin-top:12px">※ 연 10%·월복리 단순 계산. 직접 매수: 매매차익 양도세 22%(250만원 공제) · 일반계좌: 매매차익 배당소득세 15.4% · 연금저축: 세액공제 16.5% 환급금 재투자, 받을 때 연금소득세 5.5%를 전액에 적용(가장 보수적). 매년 분배금 과세·환율·수수료는 제외했어요.</p>
     </div>
     <div class="grid3" style="margin-top:20px">
