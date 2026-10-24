@@ -335,7 +335,7 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
 @media (max-width:560px){.modal{align-items:flex-end;padding:0}.modal-box{border-radius:24px 24px 0 0;max-height:92vh;padding:28px 20px 24px}}
 
 /* Intro */
-.intro{padding:56px 0 10px}
+.intro{padding:96px 0 10px}
 .tv{margin:0}
 .tv-frame{position:relative;border-radius:22px;overflow:hidden;box-shadow:0 20px 50px -20px rgba(17,19,24,.45);background:#111}
 .tv-frame img{display:block;width:100%;height:auto}
@@ -360,13 +360,31 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
 .news.mini .news-title{margin:14px 0 8px}
 .intro-c{text-align:center;font-size:clamp(26px,5vw,44px);font-weight:800;letter-spacing:-.04em;line-height:1.3;margin:64px 0 10px}
 @media (max-width:560px){.age100-grid{grid-template-columns:1fr}.tv-sub{padding:30px 12px 12px}.tv-frame{border-radius:16px}}
+
+/* Reality */
+.reality{padding:64px 0 0}
+.real-photo{margin:0}
+.real-photo img{display:block;width:100%;height:auto;border-radius:22px;box-shadow:0 20px 50px -20px rgba(17,19,24,.45);filter:saturate(.85)}
+.real-photo figcaption{font-size:12px;color:var(--ink-3);margin-top:10px;text-align:right}
+.real-stats{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:12px;margin-top:28px}
+.real-stats>div{background:#f7f7fb;border-radius:20px;padding:22px}
+.real-stats>div.main{background:#111318;color:#fff}
+.real-stats .k{font-size:13px;font-weight:700;color:var(--ink-3)}
+.real-stats .main .k{color:#a3a7b3}
+.real-stats .v{font-size:clamp(34px,6vw,50px);font-weight:800;letter-spacing:-.04em;line-height:1.15;margin:6px 0;color:var(--red)}
+.real-stats .main .v{color:#ff6b84}
+.real-stats .v small{font-size:.5em;margin-left:2px}
+.real-stats .s{font-size:13px;color:var(--ink-2)}
+.real-stats .main .s{color:#d6d8e0}
+.real-stats .main .s b{color:#fff}
+@media (max-width:700px){.real-stats{grid-template-columns:1fr 1fr}.real-stats>div.main{grid-column:1/-1}}
 </style>
 </head>
 <body>
 
 <div class="nav-shell">
   <nav class="nav">
-    <a class="logo" href="#intro"><i>🌱</i>평생 연금 플랜</a>
+    <a class="logo" href="#reality"><i>🌱</i>평생 연금 플랜</a>
     <div class="menu">
       <a href="#problem">은행의 함정</a>
       <a href="#why">S&amp;P500 10년</a>
@@ -383,6 +401,30 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
   </nav>
 </div>
 
+<section class="reality" id="reality">
+  <div class="wrap narrow">
+    <div class="sec-head" style="margin-bottom:28px">
+      <span class="tag" style="color:var(--red)">⚠️ 지금 한국의 현실</span>
+      <h2>노후 준비를 하지 않은<br>세대의 <span style="color:var(--red)">최후</span></h2>
+    </div>
+    <figure class="real-photo">
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_37S5xj2gKiWEr1s6dCqqEPT60zn/hf_20261024_023815_a1ec759b-9882-48fd-9e00-1a784e238136.png" alt="새벽 골목에서 폐지를 실은 수레를 끄는 노인의 뒷모습" width="1344" height="752" loading="eager">
+      <figcaption>※ 이해를 돕기 위한 연출 이미지(AI 생성)예요.</figcaption>
+    </figure>
+    <div class="real-stats">
+      <div class="main"><div class="k">66세 이상 상대빈곤율</div><div class="v">39.8<small>%</small></div><div class="s">노인 10명 중 4명이 빈곤 · <b>OECD 최고</b> (2023년)</div></div>
+      <div><div class="k">생활비를 스스로 마련</div><div class="v">74.7<small>%</small></div><div class="s">자녀·친척 지원은 13.1%뿐</div></div>
+      <div><div class="k">삶에 만족하는 고령자</div><div class="v">33.7<small>%</small></div><div class="s">3명 중 1명만 만족</div></div>
+    </div>
+    <div class="news mini">
+      <div class="news-top"><span class="news-badge">📰 관련 기사</span><span class="news-meta">SBS Biz · 2026.10.02</span></div>
+      <h3 class="news-title">당신도 노인 된다…<br class="pc">韓고령자, OECD 상대빈곤율 ‘최고’</h3>
+      <p class="news-src">출처: 국가데이터처 「2026 고령자 통계」 · <a href="https://biz.sbs.co.kr/amp/article/20000338144" target="_blank" rel="noopener">기사 보기</a></p>
+    </div>
+    <p class="intro-c" style="margin:56px 0 0">자식에게도, 나라에도 기댈 수 없는 시대.<br><span style="color:var(--red)">준비하지 않으면, 이게 내 미래예요.</span></p>
+  </div>
+</section>
+
 <section class="intro" id="intro">
   <div class="wrap narrow">
     <figure class="tv">
@@ -391,7 +433,7 @@ footer{padding:40px 20px 120px;font-size:13px;color:var(--ink-3);line-height:1.8
       </div>
       <figcaption>출처: SBS ‘미운 우리 새끼’</figcaption>
     </figure>
-    <h1 class="intro-h">40대에 이미<br><span class="blue">노후 준비를 끝낸</span> 사람도 있습니다.</h1>
+    <h1 class="intro-h">하지만, 40대에 이미<br><span class="blue">노후 준비를 끝낸</span> 사람도 있습니다.</h1>
 
     <div class="age100">
       <div class="age100-tag">⏳ 100세 시대</div>
